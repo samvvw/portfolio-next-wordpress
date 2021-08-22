@@ -32,7 +32,6 @@ interface Params {
 }
 
 export default function Skill({ projectsData, skillName }: SkillProps) {
-    console.log(projectsData);
     return (
         <>
             <div>

@@ -138,6 +138,34 @@ export async function getProjectsBySkill(skill: string) {
     return data?.portfolioProjects.edges;
 }
 
+export async function getAllHomeProjects() {
+    const data = await apiRequest(
+        `query AllProjectsQuery {
+  portfolioProjects(first: 3, where: {orderby: {field: SLUG, order: DESC}}) {
+    edges {
+      node {
+        slug
+        title
+        projectFields {
+          fieldGroupName
+          linkToLiveSite
+          projectDescription
+          projectName
+          repoLink
+        }
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+}`
+    );
+    return data?.portfolioProjects.edges;
+}
+
 export async function getAllProjects() {
     const data = await apiRequest(
         `query AllProjectsQuery {
