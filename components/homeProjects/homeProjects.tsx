@@ -58,19 +58,21 @@ export function HomeProjects({ homeProjects }): JSX.Element {
                                     objectPosition={'top left'}
                                 />
                             </div>
-                            <p>{projectDescription}</p>
-                            <b>{slug}</b>
-                            <a href={linkToLiveSite} target="_blank">
-                                {linkToLiveSite}
-                            </a>
-                            <a href={repoLink} target="_blank">
-                                {repoLink}
-                            </a>
-                            <div>
-                                <Link href={`/projects/${slug}`}>
-                                    <a>{slug}</a>
-                                </Link>
+                            <div className="description-wrapper">
+                                <p>{projectDescription}</p>
                             </div>
+                            <div className="links-wrapper">
+                                <a href={linkToLiveSite} target="_blank">
+                                    linkTo LiveSite
+                                </a>
+                                <a href={repoLink} target="_blank">
+                                    repo Link
+                                </a>
+                            </div>
+
+                            <Link href={`/projects/${slug}`}>
+                                <a>{slug}</a>
+                            </Link>
                         </li>
                     )
                 )}

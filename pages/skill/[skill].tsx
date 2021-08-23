@@ -1,7 +1,13 @@
-import { getAllSkillsSlugs, getProjectsBySkill } from '../../lib/api-wp';
+import {
+    getAllSkillsSlugs,
+    getProjectsBySkill,
+    getAllMenus,
+} from '../../lib/api-wp';
 import Image from 'next/image';
 import Link from 'next/link';
 import { GetStaticProps, GetStaticPaths } from 'next';
+import { Header } from '../../components';
+import { MenuProps } from '../../components';
 
 interface SkillProps {
     projectsData: [
@@ -23,6 +29,8 @@ interface SkillProps {
         }
     ];
     skillName: string;
+    mainMenu: MenuProps;
+    socialMenu: MenuProps;
 }
 
 interface Params {
@@ -34,9 +42,12 @@ interface Params {
 export default function Skill({
     projectsData,
     skillName,
+    mainMenu,
+    socialMenu,
 }: SkillProps): JSX.Element {
     return (
         <>
+            <Header mainMenu={mainMenu} socialMenu={socialMenu} />
             <div>
                 <h1>
                     Skill page:{' '}
@@ -113,11 +124,14 @@ export const getStaticProps: GetStaticProps = async function ({
     params,
 }: Params) {
     const projectsData = await getProjectsBySkill(params.skill);
+    const { mainMenu, socialMenu } = await getAllMenus();
 
     return {
         props: {
             projectsData,
             skillName: params.skill,
+            mainMenu,
+            socialMenu,
         },
     };
 };

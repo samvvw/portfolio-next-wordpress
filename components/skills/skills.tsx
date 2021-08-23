@@ -4,8 +4,8 @@ export interface SkillsProps {
     allSkills: [
         {
             node: {
-                slug: string;
-                name: string;
+                path: string;
+                label: string;
             };
         }
     ];
@@ -15,11 +15,11 @@ export function Skills({ allSkills }): JSX.Element {
     return (
         <section>
             <ul>
-                {allSkills.map(({ node: { slug, name } }) => {
+                {allSkills.map(({ node: { path, label } }) => {
                     return (
-                        <li key={slug}>
-                            <Link href={`/skills/${slug}`}>
-                                <a>{name}</a>
+                        <li key={path}>
+                            <Link href={`${path}`}>
+                                <a>{label}</a>
                             </Link>
                         </li>
                     );

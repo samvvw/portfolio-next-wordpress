@@ -1,19 +1,35 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { AuthorBio, HomeProjects, Skills, Header } from '../components/';
-import { getAllHomeProjects, getAuthorBio, getAllSkills } from '../lib/api-wp';
-import { HomeProjectsProps, SkillsProps, AuthorBioProps } from '../components/';
+import {
+    getAllHomeProjects,
+    getAuthorBio,
+    getAllSkills,
+    getAllMenus,
+} from '../lib/api-wp';
+import {
+    HomeProjectsProps,
+    SkillsProps,
+    AuthorBioProps,
+    MenuProps,
+} from '../components/';
 
 interface HomeProps {
     homeProjects: HomeProjectsProps;
     authorBio: AuthorBioProps;
     allSkills: SkillsProps;
+    mainMenu: MenuProps;
+    socialMenu: MenuProps;
+    skillsMenu: MenuProps;
 }
 
 export default function Home({
     homeProjects,
     authorBio,
     allSkills,
+    mainMenu,
+    socialMenu,
+    skillsMenu,
 }: HomeProps): JSX.Element {
     return (
         <div>
@@ -25,11 +41,11 @@ export default function Home({
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
+            <Header mainMenu={mainMenu} socialMenu={socialMenu} />
             <main>
                 <h1>Portfolio Theme</h1>
                 <AuthorBio {...authorBio} />
-                <Skills allSkills={allSkills} />
+                <Skills allSkills={skillsMenu.node.menuItems.edges} />
                 <HomeProjects homeProjects={homeProjects} />
             </main>
         </div>
@@ -40,7 +56,16 @@ export const getStaticProps: GetStaticProps = async function () {
     const homeProjects = await getAllHomeProjects();
     const authorBio = await getAuthorBio();
     const allSkills = await getAllSkills();
+    const { mainMenu, socialMenu, skillsMenu } = await getAllMenus();
+
     return {
-        props: { homeProjects, authorBio, allSkills },
+        props: {
+            homeProjects,
+            authorBio,
+            allSkills,
+            mainMenu,
+            socialMenu,
+            skillsMenu,
+        },
     };
 };

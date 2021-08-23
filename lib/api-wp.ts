@@ -1,3 +1,5 @@
+import { MenuProps } from '../components';
+
 const API_URL = process.env.WORDPRESS_API_URL;
 
 interface Variables {
@@ -6,7 +8,7 @@ interface Variables {
     };
 }
 
-interface ProjectSlug {
+interface ParamsSlug {
     node: { slug: string };
 }
 
@@ -36,6 +38,53 @@ async function apiRequest(query: string, { variables }: Variables = {}) {
         throw new Error('Failed to fetch API');
     }
     return json.data;
+}
+
+export async function getAllMenus() {
+    const data = await apiRequest(`
+    query AllMenusQuery {
+      menus {
+        edges {
+          node {
+            name
+            slug
+            menuItems {
+              edges {
+                node {
+                  path
+                  order
+                  target
+                  label
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    `);
+
+    let mainMenu: MenuProps;
+    let socialMenu: MenuProps;
+    let skillsMenu: MenuProps;
+
+    data?.menus.edges.forEach((menu: MenuProps) => {
+        switch (menu.node.slug) {
+            case 'main-menu':
+                mainMenu = menu;
+                break;
+            case 'social-media':
+                socialMenu = menu;
+                break;
+            case 'skills-menu':
+                skillsMenu = menu;
+                break;
+            default:
+                break;
+        }
+    });
+
+    return { mainMenu, socialMenu, skillsMenu };
 }
 
 export async function getAuthorBio() {
@@ -87,7 +136,7 @@ export async function getAllSkillsSlugs() {
       }
     }
   `);
-    return data?.tags.edges.map((project: ProjectSlug) => {
+    return data?.tags.edges.map((project: ParamsSlug) => {
         return {
             params: {
                 skill: project.node.slug,
@@ -138,30 +187,95 @@ export async function getProjectsBySkill(skill: string) {
     return data?.portfolioProjects.edges;
 }
 
-export async function getAllHomeProjects() {
-    const data = await apiRequest(
-        `query AllProjectsQuery {
-  portfolioProjects(first: 3, where: {orderby: {field: SLUG, order: DESC}}) {
+export async function getCategories() {
+    const data = await apiRequest(`
+      query CategoriesQuery {
+  categories {
     edges {
       node {
+        name
         slug
-        title
-        projectFields {
-          fieldGroupName
-          linkToLiveSite
-          projectDescription
-          projectName
-          repoLink
-        }
-        featuredImage {
+      }
+    }
+  }
+}
+  `);
+    return data?.categories.edges.map((category: ParamsSlug) => {
+        return {
+            params: {
+                category: category.node.slug,
+            },
+        };
+    });
+}
+
+export async function getProjectsByCategory(categoryName: string) {
+    const data = await apiRequest(
+        `
+    query ProjectsByCategoryQuery($categoryName: String!) {
+      portfolioProjects(where: {categoryName: $categoryName}) {
+        edges {
           node {
-            sourceUrl
+            slug
+            tags {
+              edges {
+                node {
+                  name
+                }
+              }
+            }
+            projectFields {
+              linkToLiveSite
+              projectDescription
+              projectName
+              repoLink
+            }
+            title
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
           }
         }
       }
     }
-  }
-}`
+
+  `,
+        {
+            variables: {
+                categoryName,
+            },
+        }
+    );
+
+    return data?.portfolioProjects.edges;
+}
+
+export async function getAllHomeProjects() {
+    const data = await apiRequest(
+        `query AllProjectsQuery {
+          portfolioProjects(first: 3, where: {orderby: {field: SLUG, order: DESC}}) {
+            edges {
+              node {
+                slug
+                title
+                projectFields {
+                  fieldGroupName
+                  linkToLiveSite
+                  projectDescription
+                  projectName
+                  repoLink
+                }
+                featuredImage {
+                  node {
+                    sourceUrl
+                  }
+                }
+              }
+            }
+          }
+        }`
     );
     return data?.portfolioProjects.edges;
 }
@@ -207,7 +321,7 @@ export async function getAllProjectsSlugs() {
           }
     `);
 
-    return data?.portfolioProjects.edges.map((project: ProjectSlug) => {
+    return data?.portfolioProjects.edges.map((project: ParamsSlug) => {
         return {
             params: {
                 project: project.node.slug,
