@@ -45,7 +45,7 @@ export default function Project({
             },
         },
     },
-}: ProjectData) {
+}: ProjectData): JSX.Element {
     return (
         <div>
             <h1>{title}</h1>

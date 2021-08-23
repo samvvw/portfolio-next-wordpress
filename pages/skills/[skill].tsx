@@ -31,7 +31,10 @@ interface Params {
     };
 }
 
-export default function Skill({ projectsData, skillName }: SkillProps) {
+export default function Skill({
+    projectsData,
+    skillName,
+}: SkillProps): JSX.Element {
     return (
         <>
             <div>

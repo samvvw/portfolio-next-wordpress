@@ -11,14 +11,21 @@ export interface AuthorBioProps {
     excerpt: string;
 }
 
-export default function ({ authorBios, excerpt }): JSX.Element {
+export default function AuthorBio({
+    authorBios: {
+        authorsName,
+        authorTagLine,
+        authorPic: { sourceUrl },
+    },
+    excerpt,
+}: AuthorBioProps): JSX.Element {
     return (
         <section>
-            <h2>{authorBios.authorsName}</h2>
-            <h3>{authorBios.authorTagLine}</h3>
+            <h2>{authorsName}</h2>
+            <h3>{authorTagLine}</h3>
             <div dangerouslySetInnerHTML={{ __html: excerpt }} />
             <Image
-                src={authorBios.authorPic.sourceUrl}
+                src={sourceUrl}
                 width={250}
                 height={250}
                 objectFit={'cover'}

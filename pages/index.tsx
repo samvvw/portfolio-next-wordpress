@@ -21,7 +21,7 @@ export default function Home({
     homeProjects,
     authorBio,
     allSkills,
-}: HomeProps) {
+}: HomeProps): JSX.Element {
     return (
         <div className={styles.container}>
             <Head>
