@@ -11,7 +11,7 @@ export interface AuthorBioProps {
     excerpt: string;
 }
 
-export default function AuthorBio({
+export function AuthorBio({
     authorBios: {
         authorsName,
         authorTagLine,

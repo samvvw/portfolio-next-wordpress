@@ -22,7 +22,7 @@ export interface HomeProjectsProps {
     ];
 }
 
-export default function HomeProjects({ homeProjects }): JSX.Element {
+export function HomeProjects({ homeProjects }): JSX.Element {
     return (
         <section>
             <ul>

@@ -11,7 +11,7 @@ export interface SkillsProps {
     ];
 }
 
-export default function Skills({ allSkills }): JSX.Element {
+export function Skills({ allSkills }): JSX.Element {
     return (
         <section>
             <ul>

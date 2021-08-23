@@ -1,15 +1,8 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
-import AuthorBio from '../components/AuthorBio/AuthorBio';
-import Skills from '../components/Skills/Skills';
-import HomeProjects from '../components/HomeProjects/HomeProjects';
-import styles from '../sass/Home.module.scss';
+import { AuthorBio, HomeProjects, Skills, Header } from '../components/';
 import { getAllHomeProjects, getAuthorBio, getAllSkills } from '../lib/api-wp';
-import { AuthorBioProps } from '../components/AuthorBio/AuthorBio';
-import { SkillsProps } from '../components/Skills/Skills';
-import { HomeProjectsProps } from '../components/HomeProjects/HomeProjects';
+import { HomeProjectsProps, SkillsProps, AuthorBioProps } from '../components/';
 
 interface HomeProps {
     homeProjects: HomeProjectsProps;
@@ -23,7 +16,7 @@ export default function Home({
     allSkills,
 }: HomeProps): JSX.Element {
     return (
-        <div className={styles.container}>
+        <div>
             <Head>
                 <title>Create Next App</title>
                 <meta
