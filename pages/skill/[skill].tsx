@@ -7,44 +7,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { Header } from '../../components';
-import { MenuProps } from '../../components';
-
-interface SkillProps {
-    projectsData: [
-        {
-            node: {
-                slug: string;
-                tags: string[];
-                title: string;
-                featuredImage: {
-                    node: { sourceUrl: string };
-                };
-                projectFields: {
-                    linkToLiveSite: string;
-                    projectDescription: string;
-                    projectName: string;
-                    repoLink: string;
-                };
-            };
-        }
-    ];
-    skillName: string;
-    mainMenu: MenuProps;
-    socialMenu: MenuProps;
-}
-
-interface Params {
-    params: {
-        [param: string]: string;
-    };
-}
 
 export default function Skill({
     projectsData,
     skillName,
     mainMenu,
     socialMenu,
-}: SkillProps): JSX.Element {
+}: WPAPI.SkillProps): JSX.Element {
     return (
         <>
             <Header mainMenu={mainMenu} socialMenu={socialMenu} />
@@ -122,7 +91,9 @@ export const getStaticPaths: GetStaticPaths = async function () {
 
 export const getStaticProps: GetStaticProps = async function ({
     params,
-}: Params) {
+}: WPAPI.Params): Promise<{
+    props: WPAPI.SkillProps;
+}> {
     const projectsData = await getProjectsBySkill(params.skill);
     const { mainMenu, socialMenu } = await getAllMenus();
 

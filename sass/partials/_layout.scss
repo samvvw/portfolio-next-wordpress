@@ -1,0 +1,25 @@
+body {
+    background: $color_body_bg;
+    min-height: 100vh;
+}
+
+main {
+    width: 100%;
+    margin: 0 auto;
+
+    // Main Content Styling Tablet
+    @media screen and (min-width: $bp_tablet) {
+        width: 90%;
+    }
+    // End Main Content Styling Tablet
+    // Main Content Styling Desktop
+    @media screen and (min-width: $bp_desktop) {
+        width: 80%;
+    }
+    // End Main Content Styling Desktop
+    // Main Content Styling Desktop Large
+    @media screen and (min-width: $bp_desktop_large) {
+        width: 75%;
+    }
+    // End Main Content Styling Desktop Large
+}

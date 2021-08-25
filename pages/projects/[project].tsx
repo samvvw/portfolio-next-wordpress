@@ -3,32 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GetStaticProps, GetStaticPaths } from 'next';
 
-interface ProjectData {
-    projectData: {
-        portfolioProject: {
-            title: string;
-            featuredImage: {
-                node: {
-                    sourceUrl: string;
-                };
-            };
-            projectFields: {
-                fieldGroupName: string;
-                linkToLiveSite: string;
-                projectDescription: string;
-                projectName: string;
-                repoLink: string;
-            };
-        };
-    };
-}
-
-interface Params {
-    params: {
-        [param: string]: string;
-    };
-}
-
 export default function Project({
     projectData: {
         portfolioProject: {
@@ -45,7 +19,7 @@ export default function Project({
             },
         },
     },
-}: ProjectData): JSX.Element {
+}: WPAPI.ProjectData): JSX.Element {
     return (
         <div>
             <h1>{title}</h1>
@@ -83,7 +57,7 @@ export const getStaticPaths: GetStaticPaths = async function getStaticPaths() {
 
 export const getStaticProps: GetStaticProps = async function ({
     params,
-}: Params) {
+}: WPAPI.Params): Promise<{ props: { projectData: WPAPI.ProjectData } }> {
     const projectData = await getProjectData(params.project);
 
     return {

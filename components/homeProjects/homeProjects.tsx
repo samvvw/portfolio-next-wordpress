@@ -1,27 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export interface HomeProjectsProps {
-    homeProjects: [
-        {
-            node: {
-                title: string;
-                slug: string;
-                featuredImage: {
-                    node: {
-                        sourceUrl: string;
-                    };
-                };
-                projectFields: {
-                    projectDescription: string;
-                    linkToLiveSite: string;
-                    repoLink: string;
-                };
-            };
-        }
-    ];
-}
-
 export function HomeProjects({ homeProjects }): JSX.Element {
     return (
         <section>

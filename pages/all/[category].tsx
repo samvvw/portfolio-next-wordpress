@@ -7,18 +7,12 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import { Header } from '../../components';
 
-interface Params {
-    params: {
-        [param: string]: string;
-    };
-}
-
 export default function Category({
     categoryData,
     categoryName,
     mainMenu,
     socialMenu,
-}): JSX.Element {
+}: WPAPI.CategoryProps): JSX.Element {
     console.log(categoryData);
     return (
         <>
@@ -50,7 +44,9 @@ export const getStaticPaths: GetStaticPaths = async function () {
 
 export const getStaticProps: GetStaticProps = async function ({
     params,
-}: Params) {
+}: WPAPI.Params): Promise<{
+    props: WPAPI.CategoryProps;
+}> {
     const categoryData = await getProjectsByCategory(params.category);
     const { mainMenu, socialMenu } = await getAllMenus();
 

@@ -1,0 +1,15 @@
+query AuthorBioQuery {
+    authosBio(id: "authors-name", idType: SLUG) {
+        date
+        authorBios {
+            bio
+            authorsName
+            authorTagline
+            authorPic {
+                sourceUrl
+            }
+        }
+        title
+        excerpt(format: RENDERED)
+    }
+}

@@ -1,0 +1,255 @@
+@import '../../sass/main.scss';
+
+.outerHeader {
+    background-color: $color_header_bg;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.headerWrapper {
+    // Logo styling
+
+    width: 90%;
+    margin: 0 auto;
+    padding: 3rem 0;
+    .logosWrapper {
+        position: relative;
+        flex-grow: 1;
+        max-width: 367px;
+    }
+    .overLine {
+        display: block;
+        max-width: 80%;
+        height: 1px;
+        background-color: $over_line_color;
+        margin-bottom: 1rem;
+        border-radius: 5px;
+        @include neonShadowBox;
+        opacity: 1;
+        transition: opacity 100ms ease-in-out;
+    }
+    .site-tagline {
+        margin-top: 1rem;
+        opacity: 0;
+        color: $color_body_text;
+        transition: opacity 300ms cubic-bezier(0.68, -0.55, 0.27, 1.55),
+            text-shadow 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+    .logo-svg-wrapper {
+        position: absolute;
+        max-width: 236px;
+        left: 0;
+    }
+    .logo-wrapper-custom {
+        h1 {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 34px;
+            line-height: 29px;
+
+            letter-spacing: 0.08em;
+            margin: 0;
+            bottom: 5px;
+            transition: opacity 250ms ease-in-out;
+            opacity: 0;
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+    // End Logo styling
+
+    // Menu Styling Mobile
+    display: flex;
+    justify-content: space-between;
+
+    .hamburgerMenu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        color: $color_body_text;
+        @include neonShadowText;
+        font-size: 1.6rem;
+        margin-right: 1rem;
+    }
+    .hamburgerMenu:hover {
+        @include neonShadowText;
+        color: $color_body_accent;
+    }
+
+    .mainMenuWrapper {
+        transform: translateX(100%);
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: $color_backdrop_bg;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        z-index: 999999;
+        padding: 10rem 0;
+        clip-path: polygon(
+            0px 0px,
+            100% 0px,
+            100% 100%,
+            35.1% 87.75%,
+            11.47% 72.27%
+        );
+        svg {
+            font-size: 1.8rem;
+            color: $color_body_text;
+            @include neonShadowSVG;
+            cursor: pointer;
+        }
+        svg:hover {
+            color: $color_body_accent;
+            @include neonShadowSVG;
+        }
+        .menuMainContainer {
+            height: 40%;
+            ul {
+                height: 100%;
+                list-style: none;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                a {
+                    font-size: 1.5rem;
+                }
+                a:hover {
+                    color: $color_body_accent;
+                }
+                hr {
+                    transform: scaleX(0);
+                    transform-origin: left;
+                    transition: all 250ms ease-in-out;
+                }
+                a:hover hr {
+                    transform: scaleX(100%);
+                    @include neonShadowBox;
+                    background-color: white;
+                    color: white;
+                }
+            }
+        }
+        .headerSocialMenu {
+            width: 30%;
+            ul {
+                display: flex;
+                justify-content: space-around;
+            }
+        }
+        a {
+            color: $color_body_text;
+            text-decoration: none;
+            @include neonShadowText;
+        }
+        a:hover {
+            color: $color_body_accent;
+            @include neonShadowText;
+        }
+    }
+
+    .menuOpen {
+        transform: translateX(0);
+        transition: transform 250ms ease-in-out;
+    }
+
+    .menuClose {
+        transition: transform 250ms ease-in-out;
+    }
+
+    // End Menu Styling Mobile
+
+    //  Menu Styling Tablet
+    @media screen and (min-width: $bp_tablet) {
+        padding: 4rem 0;
+        margin-bottom: 2rem;
+        .hamburgerMenu {
+            display: none;
+        }
+        .mainMenuWrapper {
+            transform: initial;
+            transition: none;
+            position: static;
+            max-width: 50%;
+            // max-width: 25rem;
+            background-color: initial;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 999999;
+            padding: 0 0;
+            clip-path: none;
+            flex-grow: 1;
+            .closeButton {
+                display: none;
+            }
+            .menuMainContainer {
+                margin-top: 1rem;
+                width: 90%;
+                ul {
+                    height: 100%;
+                    list-style: none;
+                    text-align: center;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-around;
+                    a {
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+            .headerSocialMenu {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                width: 20%;
+                ul {
+                    display: flex;
+                    justify-content: space-around;
+                }
+            }
+            a {
+                color: $color_body_text;
+                text-decoration: none;
+                @include neonShadowText;
+            }
+        }
+    }
+    //  End Menu Styling Tablet
+    //  Menu Styling Desktop
+    @media screen and (min-width: $bp_desktop) {
+        width: 80%;
+        .mainMenuWrapper {
+            max-width: 40%;
+            .headerSocialMenu {
+                width: 15%;
+            }
+        }
+    }
+    //  End Menu Styling Desktop
+    //  Menu Styling Desktop
+    @media screen and (min-width: $bp_desktop_large) {
+        width: 75%;
+        .mainMenuWrapper {
+            max-width: 35%;
+            .headerSocialMenu {
+                width: 10%;
+            }
+        }
+    }
+    //  End Menu Styling Desktop
+}

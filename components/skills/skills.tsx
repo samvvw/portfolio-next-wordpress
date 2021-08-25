@@ -1,16 +1,5 @@
 import Link from 'next/link';
 
-export interface SkillsProps {
-    allSkills: [
-        {
-            node: {
-                path: string;
-                label: string;
-            };
-        }
-    ];
-}
-
 export function Skills({ allSkills }): JSX.Element {
     return (
         <section>

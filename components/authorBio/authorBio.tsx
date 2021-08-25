@@ -1,16 +1,5 @@
 import Image from 'next/image';
 
-export interface AuthorBioProps {
-    authorBios: {
-        authorsName: string;
-        authorTagLine: string;
-        authorPic: {
-            sourceUrl: string;
-        };
-    };
-    excerpt: string;
-}
-
 export function AuthorBio({
     authorBios: {
         authorsName,
@@ -18,7 +7,7 @@ export function AuthorBio({
         authorPic: { sourceUrl },
     },
     excerpt,
-}: AuthorBioProps): JSX.Element {
+}: WPAPI.AuthorBioProps): JSX.Element {
     return (
         <section>
             <h2>{authorsName}</h2>

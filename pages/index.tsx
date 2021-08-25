@@ -7,21 +7,6 @@ import {
     getAllSkills,
     getAllMenus,
 } from '../lib/api-wp';
-import {
-    HomeProjectsProps,
-    SkillsProps,
-    AuthorBioProps,
-    MenuProps,
-} from '../components/';
-
-interface HomeProps {
-    homeProjects: HomeProjectsProps;
-    authorBio: AuthorBioProps;
-    allSkills: SkillsProps;
-    mainMenu: MenuProps;
-    socialMenu: MenuProps;
-    skillsMenu: MenuProps;
-}
 
 export default function Home({
     homeProjects,
@@ -30,7 +15,7 @@ export default function Home({
     mainMenu,
     socialMenu,
     skillsMenu,
-}: HomeProps): JSX.Element {
+}: WPAPI.HomeProps): JSX.Element {
     return (
         <div>
             <Head>
@@ -43,7 +28,8 @@ export default function Home({
             </Head>
             <Header mainMenu={mainMenu} socialMenu={socialMenu} />
             <main>
-                <h1>Portfolio Theme</h1>
+                <h1>Portfolio Website</h1>
+
                 <AuthorBio {...authorBio} />
                 <Skills allSkills={skillsMenu.node.menuItems.edges} />
                 <HomeProjects homeProjects={homeProjects} />
