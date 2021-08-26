@@ -11,11 +11,11 @@ import {
 export default function Home({
     homeProjects,
     authorBio,
-    allSkills,
     mainMenu,
     socialMenu,
     skillsMenu,
 }: WPAPI.HomeProps): JSX.Element {
+    console.log(homeProjects);
     return (
         <div>
             <Head>

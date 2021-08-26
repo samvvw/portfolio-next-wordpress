@@ -35,7 +35,6 @@ export default function Skill({
                         ({
                             node: {
                                 slug,
-                                tags,
                                 title,
                                 featuredImage: {
                                     node: { sourceUrl },
@@ -43,7 +42,6 @@ export default function Skill({
                                 projectFields: {
                                     linkToLiveSite,
                                     projectDescription,
-                                    projectName,
                                     repoLink,
                                 },
                             },
@@ -57,16 +55,22 @@ export default function Skill({
                                         height={250}
                                         objectFit={'cover'}
                                         objectPosition={'top center'}
+                                        alt={title}
                                     />
                                     <div>
                                         <p>{projectDescription}</p>
                                         <a
                                             href={linkToLiveSite}
                                             target="_blank"
+                                            rel="noreferrer"
                                         >
                                             Link to LiveSite
                                         </a>
-                                        <a href={repoLink} target="_blank">
+                                        <a
+                                            href={repoLink}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
                                             Repo Link
                                         </a>
                                     </div>

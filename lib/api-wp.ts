@@ -1,4 +1,4 @@
-const API_URL: string = process.env.WORDPRESS_API_URL!;
+const API_URL: string = process.env.WORDPRESS_API_URL as string;
 
 async function apiRequest<T>(
     query: string,
@@ -26,8 +26,8 @@ async function apiRequest<T>(
     });
 
     const json: {
-        data: T;
-        errors?: any;
+        data?: T;
+        errors?: [];
     } = await response.json();
     if (json.errors) {
         console.log(json.errors);

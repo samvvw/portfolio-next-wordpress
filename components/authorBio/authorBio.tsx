@@ -19,6 +19,7 @@ export function AuthorBio({
                 height={250}
                 objectFit={'cover'}
                 objectPosition={'top right'}
+                alt={authorsName}
             />
         </section>
     );

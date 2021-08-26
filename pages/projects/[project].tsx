@@ -10,13 +10,7 @@ export default function Project({
             featuredImage: {
                 node: { sourceUrl },
             },
-            projectFields: {
-                fieldGroupName,
-                linkToLiveSite,
-                projectDescription,
-                projectName,
-                repoLink,
-            },
+            projectFields: { linkToLiveSite, projectDescription, repoLink },
         },
     },
 }: WPAPI.ProjectData): JSX.Element {
@@ -28,13 +22,14 @@ export default function Project({
                 width={400}
                 height={300}
                 objectFit={'cover'}
+                alt={title}
             />
 
-            <a href={linkToLiveSite} target={'_blank'}>
+            <a href={linkToLiveSite} target={'_blank'} rel="noreferrer">
                 linkToLiveSite
             </a>
 
-            <a href={repoLink} target={'_blank'}>
+            <a href={repoLink} target={'_blank'} rel="noreferrer">
                 repoLink
             </a>
 

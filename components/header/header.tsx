@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import style from './header.module.scss';
 
-export function Header({ mainMenu, socialMenu }: WPAPI.HeaderProps) {
+export function Header({
+    mainMenu,
+    socialMenu,
+}: WPAPI.HeaderProps): JSX.Element {
     // console.log(style);
 
     const [drawerState, setDrawerState] = useState<string | null>(null);
-
     useEffect(() => {
         function updateWindow() {
             if (window.innerWidth > 700) {

@@ -5,6 +5,7 @@ import {
 } from '../../lib/api-wp';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Header } from '../../components';
 
 export default function Category({
@@ -25,6 +26,41 @@ export default function Category({
                         categoryName.slice(1)
                     );
                 })(categoryName)}
+            </div>
+            <div>
+                {categoryData.map(
+                    ({
+                        node: {
+                            slug,
+                            title,
+                            projectFields: {
+                                linkToLiveSite,
+                                projectDescription,
+                                repoLink,
+                            },
+                            featuredImage: {
+                                node: { sourceUrl },
+                            },
+                        },
+                    }) => {
+                        return (
+                            <div key={slug}>
+                                <h2>{title}</h2>
+                                <Image
+                                    src={sourceUrl}
+                                    width={380}
+                                    height={250}
+                                    objectFit={'contain'}
+                                    objectPosition={'top center'}
+                                    alt={title}
+                                />
+                                <p>{projectDescription}</p>
+                                <a href={repoLink}> repo link</a>
+                                <a href={linkToLiveSite}>link to live site</a>
+                            </div>
+                        );
+                    }
+                )}
             </div>
             <Link href="/">
                 <a>Back to home...</a>

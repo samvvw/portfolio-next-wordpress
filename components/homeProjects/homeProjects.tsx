@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export function HomeProjects({ homeProjects }): JSX.Element {
+export function HomeProjects({
+    homeProjects,
+}: WPAPI.HomeProjectsProps): JSX.Element {
     return (
         <section>
             <ul>
@@ -35,16 +37,25 @@ export function HomeProjects({ homeProjects }): JSX.Element {
                                     layout="fill"
                                     objectFit={'cover'}
                                     objectPosition={'top left'}
+                                    alt={title}
                                 />
                             </div>
                             <div className="description-wrapper">
                                 <p>{projectDescription}</p>
                             </div>
                             <div className="links-wrapper">
-                                <a href={linkToLiveSite} target="_blank">
+                                <a
+                                    href={linkToLiveSite}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
                                     linkTo LiveSite
                                 </a>
-                                <a href={repoLink} target="_blank">
+                                <a
+                                    href={repoLink}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
                                     repo Link
                                 </a>
                             </div>

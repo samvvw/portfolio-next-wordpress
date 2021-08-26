@@ -40,24 +40,7 @@ declare namespace WPAPI {
     }
 
     interface HomeProjectsProps {
-        homeProjects: [
-            {
-                node: {
-                    title: string;
-                    slug: string;
-                    featuredImage: {
-                        node: {
-                            sourceUrl: string;
-                        };
-                    };
-                    projectFields: {
-                        projectDescription: string;
-                        linkToLiveSite: string;
-                        repoLink: string;
-                    };
-                };
-            }
-        ];
+        homeProjects: SingleProject[];
     }
 
     interface SkillsProps {
@@ -72,10 +55,10 @@ declare namespace WPAPI {
     }
 
     interface CategoryProps {
-        categoryData: WPAPI.SingleProject[];
+        categoryData: SingleProject[];
         categoryName: string;
-        mainMenu: WPAPI.MenuProps;
-        socialMenu: WPAPI.MenuProps;
+        mainMenu: MenuProps;
+        socialMenu: MenuProps;
     }
 
     interface Params {
@@ -135,7 +118,7 @@ declare namespace WPAPI {
     }
 
     interface HomeProps {
-        homeProjects: HomeProjectsProps;
+        homeProjects: SingleProject[];
         authorBio: AuthorBioProps;
         allSkills: SkillsProps;
         mainMenu: MenuProps;

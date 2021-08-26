@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export function Skills({ allSkills }): JSX.Element {
+export function Skills({ allSkills }: WPAPI.SkillsProps): JSX.Element {
     return (
         <section>
             <ul>
