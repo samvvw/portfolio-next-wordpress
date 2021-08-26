@@ -8,8 +8,6 @@ export function Header({
     mainMenu,
     socialMenu,
 }: WPAPI.HeaderProps): JSX.Element {
-    // console.log(style);
-
     const [drawerState, setDrawerState] = useState<string | null>(null);
     useEffect(() => {
         function updateWindow() {
@@ -75,7 +73,11 @@ export function Header({
                                 ({ node: { order, label, path, target } }) => {
                                     return (
                                         <li key={order}>
-                                            <a href={path} target={target}>
+                                            <a
+                                                href={path}
+                                                target={target}
+                                                rel={target ? 'noreferrer' : ''}
+                                            >
                                                 <span className="visually-hidden">
                                                     {label}
                                                 </span>
