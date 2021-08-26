@@ -68,21 +68,30 @@ declare namespace WPAPI {
     }
 
     interface ProjectData {
-        projectData: {
-            portfolioProject: {
-                title: string;
-                featuredImage: {
-                    node: {
-                        sourceUrl: string;
-                    };
+        portfolioProject: {
+            title: string;
+            featuredImage: {
+                node: {
+                    sourceUrl: string;
                 };
-                projectFields: {
-                    fieldGroupName: string;
-                    linkToLiveSite: string;
-                    projectDescription: string;
-                    projectName: string;
-                    repoLink: string;
-                };
+            };
+            projectFields: {
+                fieldGroupName: string;
+                linkToLiveSite: string;
+                projectDescription: string;
+                projectName: string;
+                repoLink: string;
+            };
+            tags: {
+                edges: [
+                    {
+                        node: {
+                            tagId: string;
+                            name: string;
+                            slug: string;
+                        };
+                    }
+                ];
             };
         };
     }

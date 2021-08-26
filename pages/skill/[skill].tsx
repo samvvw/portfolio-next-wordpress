@@ -6,7 +6,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { GetStaticProps, GetStaticPaths } from 'next';
-import { Header } from '../../components';
+import { Layout } from '../../components';
 
 export default function Skill({
     projectsData,
@@ -15,8 +15,11 @@ export default function Skill({
     socialMenu,
 }: WPAPI.SkillProps): JSX.Element {
     return (
-        <>
-            <Header mainMenu={mainMenu} socialMenu={socialMenu} />
+        <Layout
+            mainMenu={mainMenu}
+            socialMenu={socialMenu}
+            title={'Skills | Portfolio Sam Villegas'}
+        >
             <div>
                 <h1>
                     Skill page:{' '}
@@ -80,7 +83,7 @@ export default function Skill({
                     )}
                 </section>
             </div>
-        </>
+        </Layout>
     );
 }
 
