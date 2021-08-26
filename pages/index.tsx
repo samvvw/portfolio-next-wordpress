@@ -15,7 +15,6 @@ export default function Home({
     socialMenu,
     skillsMenu,
 }: WPAPI.HomeProps): JSX.Element {
-    console.log(homeProjects);
     return (
         <div>
             <Head>
