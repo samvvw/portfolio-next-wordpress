@@ -410,6 +410,7 @@ export async function getProjectData(slug: string): Promise<WPAPI.ProjectData> {
                             node {
                                 tagId
                                 name
+                                slug
                             }
                         }
                     }
