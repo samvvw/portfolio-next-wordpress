@@ -14,7 +14,6 @@ export default function Category({
     mainMenu,
     socialMenu,
 }: WPAPI.CategoryProps): JSX.Element {
-    console.log(categoryData);
     return (
         <>
             <Header mainMenu={mainMenu} socialMenu={socialMenu} />
