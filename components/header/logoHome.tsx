@@ -177,7 +177,7 @@ export default function LogoHome({
             </div>
             <div className={style.logoWrapperCustom}>
                 <h1 ref={customLogoWrapper}>
-                    {isHome ? (
+                    {!isHome ? (
                         <Link href="/">
                             <a>Sam Villegas</a>
                         </Link>
