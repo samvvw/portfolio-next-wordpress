@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next';
 import { AuthorBio, HomeProjects, Skills, Layout } from '../components/';
 import {
+    getGeneralSettings,
     getAllHomeProjects,
     getAuthorBio,
     getAllSkills,
@@ -8,6 +9,7 @@ import {
 } from '../lib/api-wp';
 
 export default function Home({
+    generalSettings,
     homeProjects,
     authorBio,
     mainMenu,
@@ -20,6 +22,7 @@ export default function Home({
             socialMenu={socialMenu}
             title={'Portfolio Sam Villegas'}
             isHome
+            generalSettings={generalSettings}
         >
             <h1>Portfolio Website</h1>
 
@@ -31,6 +34,7 @@ export default function Home({
 }
 
 export const getStaticProps: GetStaticProps = async function () {
+    const generalSettings = await getGeneralSettings();
     const homeProjects = await getAllHomeProjects();
     const authorBio = await getAuthorBio();
     const allSkills = await getAllSkills();
@@ -38,6 +42,7 @@ export const getStaticProps: GetStaticProps = async function () {
 
     return {
         props: {
+            generalSettings,
             homeProjects,
             authorBio,
             allSkills,

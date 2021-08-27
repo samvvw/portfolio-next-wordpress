@@ -3,12 +3,14 @@ import { Header } from '..';
 
 export function Layout({
     children,
+    generalSettings,
     mainMenu,
     socialMenu,
     title,
     isHome,
 }: {
     children: React.ReactNode;
+    generalSettings: WPAPI.GeneralSettingsProps;
     mainMenu: WPAPI.MenuProps;
     socialMenu: WPAPI.MenuProps;
     title: string;
@@ -28,6 +30,7 @@ export function Layout({
                 mainMenu={mainMenu}
                 socialMenu={socialMenu}
                 isHome={isHome}
+                generalSettings={generalSettings}
             />
             <main>{children}</main>
         </div>

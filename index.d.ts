@@ -9,6 +9,28 @@ declare namespace WPAPI {
         node: { slug: string };
     }
 
+    interface GeneralSettingsProps {
+        title: string;
+        description: string;
+    }
+
+    interface HomeProps {
+        generalSettings: GeneralSettingsProps;
+        homeProjects: SingleProject[];
+        authorBio: AuthorBioProps;
+        allSkills: SkillsProps;
+        mainMenu: MenuProps;
+        socialMenu: MenuProps;
+        skillsMenu: MenuProps;
+    }
+
+    interface HeaderProps {
+        mainMenu: MenuProps;
+        socialMenu: MenuProps;
+        isHome?: boolean;
+        generalSettings: GeneralSettingsProps;
+    }
+
     interface MenuProps {
         node: {
             name: string;
@@ -55,6 +77,7 @@ declare namespace WPAPI {
     }
 
     interface CategoryProps {
+        generalSettings: GeneralSettingsProps;
         categoryData: SingleProject[];
         categoryName: string;
         mainMenu: MenuProps;
@@ -120,24 +143,10 @@ declare namespace WPAPI {
     }
 
     interface SkillProps {
+        generalSettings: GeneralSettingsProps;
         projectsData: SingleProject[];
         skillName: string;
         mainMenu: MenuProps;
         socialMenu: MenuProps;
-    }
-
-    interface HomeProps {
-        homeProjects: SingleProject[];
-        authorBio: AuthorBioProps;
-        allSkills: SkillsProps;
-        mainMenu: MenuProps;
-        socialMenu: MenuProps;
-        skillsMenu: MenuProps;
-    }
-
-    interface HeaderProps {
-        mainMenu: MenuProps;
-        socialMenu: MenuProps;
-        isHome?: boolean;
     }
 }

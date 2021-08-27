@@ -6,6 +6,7 @@ import style from './header.module.scss';
 import LogoHome from './logoHome';
 
 export function Header({
+    generalSettings,
     mainMenu,
     socialMenu,
     isHome,
@@ -32,7 +33,11 @@ export function Header({
     return (
         <header className={style.outerHeader}>
             <div className={style.headerWrapper}>
-                <LogoHome isHome={isHome} style={style} />
+                <LogoHome
+                    isHome={isHome}
+                    style={style}
+                    generalSettings={generalSettings}
+                />
 
                 <div className={style.hamburgerMenu}>
                     <FontAwesomeIcon

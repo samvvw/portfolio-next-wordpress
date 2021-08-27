@@ -2,9 +2,11 @@ import { useRef, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function LogoHome({
+    generalSettings: { title, description },
     isHome,
     style,
 }: {
+    generalSettings: WPAPI.GeneralSettingsProps;
     isHome: boolean;
     style: {
         [style: string]: string;
@@ -179,15 +181,15 @@ export default function LogoHome({
                 <h1 ref={customLogoWrapper}>
                     {!isHome ? (
                         <Link href="/">
-                            <a>Sam Villegas</a>
+                            <a>{title}</a>
                         </Link>
                     ) : (
-                        'Sam Villegas'
+                        `${title}`
                     )}
                 </h1>
             </div>
             <div className={style.siteTagline} ref={siteTagline}>
-                <p>description</p>
+                <p>{description}</p>
             </div>
         </div>
     );

@@ -36,6 +36,20 @@ async function apiRequest<T>(
     return json.data;
 }
 
+export async function getGeneralSettings(): Promise<WPAPI.GeneralSettingsProps> {
+    const data: { generalSettings: WPAPI.GeneralSettingsProps } =
+        await apiRequest(/* GraphQL */ `
+            query GeneralSettingsQuery {
+                generalSettings {
+                    title
+                    description
+                }
+            }
+        `);
+
+    return data.generalSettings;
+}
+
 export async function getAllMenus(): Promise<{
     [menu: string]: WPAPI.MenuProps;
 }> {

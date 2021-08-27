@@ -1,4 +1,5 @@
 import {
+    getGeneralSettings,
     getAllProjectsSlugs,
     getProjectData,
     getAllMenus,
@@ -9,6 +10,7 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { Layout } from '../../components';
 
 export default function Project({
+    generalSettings,
     projectData: {
         portfolioProject: {
             title,
@@ -22,12 +24,14 @@ export default function Project({
     mainMenu,
     socialMenu,
 }: {
+    generalSettings: WPAPI.GeneralSettingsProps;
     projectData: WPAPI.ProjectData;
     mainMenu: WPAPI.MenuProps;
     socialMenu: WPAPI.MenuProps;
 }): JSX.Element {
     return (
         <Layout
+            generalSettings={generalSettings}
             mainMenu={mainMenu}
             socialMenu={socialMenu}
             title={`${title} | Portfolio Sam Villegas`}
@@ -83,16 +87,19 @@ export const getStaticProps: GetStaticProps = async function ({
     params,
 }: WPAPI.Params): Promise<{
     props: {
+        generalSettings: WPAPI.GeneralSettingsProps;
         projectData: WPAPI.ProjectData;
         mainMenu: WPAPI.MenuProps;
         socialMenu: WPAPI.MenuProps;
     };
 }> {
+    const generalSettings = await getGeneralSettings();
     const projectData = await getProjectData(params.project);
     const { mainMenu, socialMenu } = await getAllMenus();
 
     return {
         props: {
+            generalSettings,
             projectData,
             mainMenu,
             socialMenu,
