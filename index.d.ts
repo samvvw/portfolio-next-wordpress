@@ -52,12 +52,14 @@ declare namespace WPAPI {
 
     interface AuthorBioProps {
         authorBios: {
+            bio: string;
             authorsName: string;
-            authorTagLine: string;
+            authorTagline: string;
             authorPic: {
                 sourceUrl: string;
             };
         };
+        title: string;
         excerpt: string;
     }
 
