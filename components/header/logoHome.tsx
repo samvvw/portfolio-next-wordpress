@@ -12,7 +12,6 @@ export default function LogoHome({
         [style: string]: string;
     };
 }): JSX.Element {
-    console.log(title, description);
     const logoRef = useRef<(HTMLElement & SVGSVGElement) | null>();
     const svgWrapper = useRef<HTMLDivElement | null>();
     const siteTagline = useRef<HTMLDivElement>();

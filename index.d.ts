@@ -77,6 +77,7 @@ declare namespace WPAPI {
     }
 
     interface CategoryProps {
+        generalSettings: GeneralSettingsProps;
         categoryData: SingleProject[];
         categoryName: string;
         mainMenu: MenuProps;
@@ -142,6 +143,7 @@ declare namespace WPAPI {
     }
 
     interface SkillProps {
+        generalSettings: GeneralSettingsProps;
         projectsData: SingleProject[];
         skillName: string;
         mainMenu: MenuProps;

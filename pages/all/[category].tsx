@@ -1,4 +1,5 @@
 import {
+    getGeneralSettings,
     getCategories,
     getProjectsByCategory,
     getAllMenus,
@@ -9,6 +10,7 @@ import Image from 'next/image';
 import { Layout } from '../../components';
 
 export default function Category({
+    generalSettings,
     categoryData,
     categoryName,
     mainMenu,
@@ -16,6 +18,7 @@ export default function Category({
 }: WPAPI.CategoryProps): JSX.Element {
     return (
         <Layout
+            generalSettings={generalSettings}
             mainMenu={mainMenu}
             socialMenu={socialMenu}
             title={`${((categoryName) => {
@@ -89,11 +92,13 @@ export const getStaticProps: GetStaticProps = async function ({
 }: WPAPI.Params): Promise<{
     props: WPAPI.CategoryProps;
 }> {
+    const generalSettings = await getGeneralSettings();
     const categoryData = await getProjectsByCategory(params.category);
     const { mainMenu, socialMenu } = await getAllMenus();
 
     return {
         props: {
+            generalSettings,
             categoryData,
             categoryName: params.category,
             mainMenu,

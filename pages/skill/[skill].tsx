@@ -1,4 +1,5 @@
 import {
+    getGeneralSettings,
     getAllSkillsSlugs,
     getProjectsBySkill,
     getAllMenus,
@@ -9,6 +10,7 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { Layout } from '../../components';
 
 export default function Skill({
+    generalSettings,
     projectsData,
     skillName,
     mainMenu,
@@ -16,6 +18,7 @@ export default function Skill({
 }: WPAPI.SkillProps): JSX.Element {
     return (
         <Layout
+            generalSettings={generalSettings}
             mainMenu={mainMenu}
             socialMenu={socialMenu}
             title={'Skills | Portfolio Sam Villegas'}
@@ -101,11 +104,13 @@ export const getStaticProps: GetStaticProps = async function ({
 }: WPAPI.Params): Promise<{
     props: WPAPI.SkillProps;
 }> {
+    const generalSettings = await getGeneralSettings();
     const projectsData = await getProjectsBySkill(params.skill);
     const { mainMenu, socialMenu } = await getAllMenus();
 
     return {
         props: {
+            generalSettings,
             projectsData,
             skillName: params.skill,
             mainMenu,
