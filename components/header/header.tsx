@@ -3,10 +3,12 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import style from './header.module.scss';
+import LogoHome from './logoHome';
 
 export function Header({
     mainMenu,
     socialMenu,
+    isHome,
 }: WPAPI.HeaderProps): JSX.Element {
     const [drawerState, setDrawerState] = useState<string | null>(null);
     useEffect(() => {
@@ -30,9 +32,8 @@ export function Header({
     return (
         <header className={style.outerHeader}>
             <div className={style.headerWrapper}>
-                <div className={style.logosWrapper}>
-                    <span className={style.overLine}></span>
-                </div>
+                <LogoHome isHome={isHome} style={style} />
+
                 <div className={style.hamburgerMenu}>
                     <FontAwesomeIcon
                         icon={['fas', 'bars']}

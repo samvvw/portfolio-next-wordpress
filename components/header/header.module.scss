@@ -31,19 +31,19 @@
         opacity: 1;
         transition: opacity 100ms ease-in-out;
     }
-    .site-tagline {
+    .siteTagline {
         margin-top: 1rem;
         opacity: 0;
         color: $color_body_text;
         transition: opacity 300ms cubic-bezier(0.68, -0.55, 0.27, 1.55),
             text-shadow 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
     }
-    .logo-svg-wrapper {
+    .logoSvgWrapper {
         position: absolute;
         max-width: 236px;
         left: 0;
     }
-    .logo-wrapper-custom {
+    .logoWrapperCustom {
         h1 {
             font-style: normal;
             font-weight: normal;

@@ -19,6 +19,7 @@ export default function Home({
             mainMenu={mainMenu}
             socialMenu={socialMenu}
             title={'Portfolio Sam Villegas'}
+            isHome
         >
             <h1>Portfolio Website</h1>
 
