@@ -1,1 +1,107 @@
 @import '../../sass/main.scss';
+
+.authorBio {
+    .authorProfile {
+        .taglineWrapper {
+            padding: 0 1rem;
+            width: 90%;
+            margin: 3rem auto;
+        }
+        h3 {
+            font-size: 2rem;
+            color: $color_header_light_text;
+            font-weight: normal;
+            margin-bottom: 1rem;
+            // margin-left: 1rem;
+        }
+        h4 {
+            font-weight: normal;
+            color: $color_body_text;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+        h4::first-line {
+            color: $color_header_text;
+        }
+        p {
+            font-size: 1rem;
+        }
+        .entryThumbnail {
+            text-align: center;
+        }
+        img {
+            width: 280px;
+            height: auto;
+            border-radius: 5px;
+            margin: 0 auto;
+        }
+    }
+
+    .authorBio {
+        margin: 10rem auto;
+        width: 90%;
+        padding: 2rem 2rem;
+        background-color: $color_bio_card_bg;
+        border-radius: 10px;
+        @include neonShadowBox;
+        h2 {
+            margin: 2rem;
+            font-size: 2rem;
+        }
+        p {
+            width: 90%;
+            margin: 0 auto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 1.1rem;
+            line-height: 171.5%;
+        }
+    }
+
+    @media screen and (min-width: $bp_tablet) {
+        .authorProfile {
+            margin: 10rem auto;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+
+            .entryThumbnail {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+    @media screen and (min-width: $bp_desktop) {
+        .authorProfile {
+            h3 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+        }
+        .authorBio {
+            width: 80%;
+            p {
+                width: 80%;
+                margin-left: auto;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 1.1rem;
+                line-height: 171.5%;
+            }
+        }
+    }
+
+    @media screen and (min-width: $bp_desktop_large) {
+        .authorProfile {
+            h3 {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+            h4 {
+                font-size: 1.8rem;
+                margin-bottom: 0.8rem;
+            }
+        }
+    }
+}
