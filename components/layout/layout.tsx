@@ -6,11 +6,13 @@ export function Layout({
     mainMenu,
     socialMenu,
     title,
+    isHome,
 }: {
     children: React.ReactNode;
     mainMenu: WPAPI.MenuProps;
     socialMenu: WPAPI.MenuProps;
     title: string;
+    isHome?: boolean;
 }): JSX.Element {
     return (
         <div>
@@ -22,7 +24,11 @@ export function Layout({
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Header mainMenu={mainMenu} socialMenu={socialMenu} />
+            <Header
+                mainMenu={mainMenu}
+                socialMenu={socialMenu}
+                isHome={isHome}
+            />
             <main>{children}</main>
         </div>
     );

@@ -6,7 +6,7 @@ import {
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Header } from '../../components';
+import { Layout } from '../../components';
 
 export default function Category({
     categoryData,
@@ -15,8 +15,15 @@ export default function Category({
     socialMenu,
 }: WPAPI.CategoryProps): JSX.Element {
     return (
-        <>
-            <Header mainMenu={mainMenu} socialMenu={socialMenu} />
+        <Layout
+            mainMenu={mainMenu}
+            socialMenu={socialMenu}
+            title={`${((categoryName) => {
+                return (
+                    categoryName.charAt(0).toUpperCase() + categoryName.slice(1)
+                );
+            })(categoryName)} | Portfolio Sam Villegas`}
+        >
             <div>
                 Category:{' '}
                 {((categoryName) => {
@@ -64,7 +71,7 @@ export default function Category({
             <Link href="/">
                 <a>Back to home...</a>
             </Link>
-        </>
+        </Layout>
     );
 }
 

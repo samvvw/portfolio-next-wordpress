@@ -138,5 +138,6 @@ declare namespace WPAPI {
     interface HeaderProps {
         mainMenu: MenuProps;
         socialMenu: MenuProps;
+        isHome?: boolean;
     }
 }
