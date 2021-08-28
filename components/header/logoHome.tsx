@@ -1,21 +1,24 @@
 import { useRef, useEffect } from 'react';
 import Link from 'next/link';
+// import { handleAnimation } from '../utils/animationHandler';
 
 export default function LogoHome({
     generalSettings: { title, description },
     isHome,
     style,
+    theme,
 }: {
     generalSettings: WPAPI.GeneralSettingsProps;
     isHome: boolean;
     style: {
         [style: string]: string;
     };
+    theme: string;
 }): JSX.Element {
     const logoRef = useRef<(HTMLElement & SVGSVGElement) | null>();
     const svgWrapper = useRef<HTMLDivElement | null>();
-    const siteTagline = useRef<HTMLDivElement>();
     const spanLine = useRef<HTMLSpanElement>();
+    const siteTagline = useRef<HTMLDivElement>();
     const customLogoWrapper = useRef<HTMLHeadingElement>();
 
     useEffect(() => {
@@ -34,12 +37,22 @@ export default function LogoHome({
                 logo.style.fill = `transparent`;
             });
         } else {
-            logos.forEach((logo) => {
-                logo.style.fill = '#A7F2EB';
-            });
+            if (theme === 'dark') {
+                logos.forEach((logo) => {
+                    logo.style.fill = '#A7F2EB';
+                });
+            } else {
+                logos.forEach((logo) => {
+                    logo.style.fill = '#1d2941';
+                });
+            }
         }
         logos.forEach((logo) => {
-            logo.style.stroke = `white`;
+            if (theme === 'dark') {
+                logo.style.stroke = `white`;
+            } else {
+                logo.style.stroke = '#090d0f';
+            }
             logo.style.strokeWidth = `1px`;
         });
 
@@ -57,7 +70,11 @@ export default function LogoHome({
                 setTimeout(() => {
                     logo.style.transition =
                         'stroke-dashoffset 1s cubic-bezier(.34,-1.61,.55,1.83) 0s, fill 2s ease-in-out 2s, stroke-dasharray 3s ease-out 1s, opacity 1s ease-out';
-                    logo.style.fill = '#A7F2EB';
+                    if (theme === 'dark') {
+                        logo.style.fill = '#A7F2EB';
+                    } else {
+                        logo.style.fill = '#1d2941';
+                    }
                     // logo.style.strokeDasharray = '0';
                     logo.style.strokeDashoffset = `${setStroke(100, i)}px`;
                 }, 300 * i);
@@ -82,8 +99,14 @@ export default function LogoHome({
                     svgWrapper.current.style.opacity = '0.5';
                     spanLine.current.style.opacity = '1';
                     siteTagline.current.style.opacity = '0.5';
-                    siteTagline.current.style.textShadow =
-                        '0px 0px 2px #a7f2eb, 0px 0px 4px rgba(242, 242, 242, 0.53)';
+
+                    if (theme === 'dark') {
+                        siteTagline.current.style.textShadow =
+                            '0px 0px 2px #a7f2eb, 0px 0px 4px rgba(242, 242, 242, 0.53)';
+                    } else {
+                        siteTagline.current.style.textShadow =
+                            '0px 0px 2px #1d2941, 0px 0px 4px rgba(242, 242, 242, 0.53)';
+                    }
                 }, delay + 600);
                 const tf = setTimeout(() => {
                     svgWrapper.current.style.opacity = '1';
@@ -118,7 +141,7 @@ export default function LogoHome({
             siteTagline.current.style.opacity = '1';
             spanLine.current.style.opacity = '1';
         }
-    }, []);
+    }, [theme]);
     return (
         <div id="logo-svg-wrapper" className={style.logosWrapper}>
             <span className={style.overLine} ref={spanLine}></span>

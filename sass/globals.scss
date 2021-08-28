@@ -1,3 +1,30 @@
+:root {
+    --body-bg: #090d0f;
+    --body-bg-light: #f2f2f2;
+    --color_backdrop_bg: #090d0fe8;
+    --color_backdrop_bg: #f2f2f2e7;
+    --color_header_text: #a7f2eb;
+    --color_header_text-light: #1d2941;
+    --color_header_light_text: #f5f5f5;
+    --color_header_light_text-light: #1d2941;
+    --over_line_color: #f2f2f2;
+    --over_line_color-light: #9fd8f1;
+    --color_body_text: #f2f2f2;
+    --color_body_text-light: #31343c;
+    --color_body_text_dark: #e5e5e5;
+    --color_body_text_dark-light: #31343c;
+    --color_card_bg: #2a3640;
+    --color_card_bg-light: #ebebeb;
+    --color_body_accent: #9fd8f1;
+    --color_body_accent-light: #2a4957;
+    --color_bio_card_bg: #2a3640;
+    --color_bio_card_bg-light: #ebebeb;
+    --color_tag_bg: #9fd8f1;
+    --color_tag_bg-light: #263e70;
+    --color_tag: #1d2941;
+    --color_tag-light: #f2f2f2;
+}
+
 @import 'partials/variables/variables';
 @import 'partials/mixins';
 @import 'partials/globals';
