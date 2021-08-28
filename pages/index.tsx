@@ -16,6 +16,7 @@ export default function Home({
     socialMenu,
     skillsMenu,
 }: WPAPI.HomeProps): JSX.Element {
+    // console.log(document);
     return (
         <Layout
             mainMenu={mainMenu}

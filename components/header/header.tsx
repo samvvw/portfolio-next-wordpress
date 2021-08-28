@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import style from './header.module.scss';
 import LogoHome from './logoHome';
+import { setThemeColors } from '../utils/themeSelector';
 
 export function Header({
     generalSettings,
@@ -12,6 +13,26 @@ export function Header({
     isHome,
 }: WPAPI.HeaderProps): JSX.Element {
     const [drawerState, setDrawerState] = useState<string | null>(null);
+    const [theme, setTheme] = useState<string | null>(null);
+
+    function changeTheme() {
+        if (theme === null) {
+            setTheme('dark');
+        } else if (theme === 'dark') {
+            setTheme('light');
+        } else {
+            setTheme('dark');
+        }
+    }
+
+    useEffect(() => {
+        if (sessionStorage.getItem('theme-mode')) {
+            setTheme(sessionStorage.getItem('theme-mode'));
+        } else {
+            setTheme('dark');
+        }
+    }, []);
+
     useEffect(() => {
         function updateWindow() {
             if (window.innerWidth > 700) {
@@ -23,6 +44,14 @@ export function Header({
             window.removeEventListener('resize', updateWindow);
         };
     }, []);
+
+    useEffect(() => {
+        if (theme !== null) {
+            setThemeColors(theme);
+            sessionStorage.setItem('theme-mode', theme);
+        }
+        console.log(theme);
+    }, [theme]);
 
     function handleDrawer() {
         return drawerState === null || drawerState === style.menuClose
@@ -37,6 +66,7 @@ export function Header({
                     isHome={isHome}
                     style={style}
                     generalSettings={generalSettings}
+                    theme={theme}
                 />
 
                 <div className={style.hamburgerMenu}>
@@ -75,6 +105,19 @@ export function Header({
                     </nav>
                     <div className={`menu-container ${style.headerSocialMenu}`}>
                         <ul className="social-menu">
+                            <li onClick={changeTheme}>
+                                {theme !== 'light' ? (
+                                    <FontAwesomeIcon
+                                        icon={['fas', 'sun']}
+                                        size="2x"
+                                    />
+                                ) : (
+                                    <FontAwesomeIcon
+                                        icon={['fas', 'moon']}
+                                        size="2x"
+                                    />
+                                )}
+                            </li>
                             {socialMenu.node.menuItems.edges.map(
                                 ({ node: { order, label, path, target } }) => {
                                     return (

@@ -32,6 +32,7 @@ export function Layout({
                 isHome={isHome}
                 generalSettings={generalSettings}
             />
+
             <main>{children}</main>
         </div>
     );
