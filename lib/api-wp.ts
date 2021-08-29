@@ -197,6 +197,7 @@ export async function getProjectsBySkill(
                                 edges {
                                     node {
                                         name
+                                        slug
                                     }
                                 }
                             }
@@ -207,6 +208,7 @@ export async function getProjectsBySkill(
                                 repoLink
                             }
                             title
+
                             featuredImage {
                                 node {
                                     sourceUrl
@@ -278,6 +280,7 @@ export async function getProjectsByCategory(
                                 edges {
                                     node {
                                         name
+                                        slug
                                     }
                                 }
                             }
@@ -288,6 +291,7 @@ export async function getProjectsByCategory(
                                 repoLink
                             }
                             title
+
                             featuredImage {
                                 node {
                                     sourceUrl
@@ -373,6 +377,14 @@ export async function getAllProjects(): Promise<WPAPI.SingleProject[]> {
                             projectName
                             repoLink
                         }
+                        tags {
+                            edges {
+                                node {
+                                    name
+                                    slug
+                                }
+                            }
+                        }
                         featuredImage {
                             node {
                                 sourceUrl
@@ -430,7 +442,6 @@ export async function getProjectData(slug: string): Promise<WPAPI.ProjectData> {
                     tags {
                         edges {
                             node {
-                                tagId
                                 name
                                 slug
                             }
