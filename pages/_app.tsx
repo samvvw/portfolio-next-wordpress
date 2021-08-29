@@ -8,6 +8,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { faSun } from '@fortawesome/free-solid-svg-icons/faSun';
 import { faMoon } from '@fortawesome/free-solid-svg-icons/faMoon';
+import { faWindowMaximize } from '@fortawesome/free-solid-svg-icons/faWindowMaximize';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
@@ -18,7 +19,8 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         faBars,
         faTimes,
         faMoon,
-        faSun
+        faSun,
+        faWindowMaximize
     );
     return <Component {...pageProps} />;
 }
