@@ -7,7 +7,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { GetStaticProps, GetStaticPaths } from 'next';
-import { Layout } from '../../components';
+import { HomeProjects, Layout } from '../../components';
 
 export default function Skill({
     generalSettings,
@@ -36,55 +36,7 @@ export default function Skill({
                 <Link href="/">
                     <a>Back to home...</a>
                 </Link>
-                <section>
-                    {projectsData.map(
-                        ({
-                            node: {
-                                slug,
-                                title,
-                                featuredImage: {
-                                    node: { sourceUrl },
-                                },
-                                projectFields: {
-                                    linkToLiveSite,
-                                    projectDescription,
-                                    repoLink,
-                                },
-                            },
-                        }) => {
-                            return (
-                                <article key={slug}>
-                                    <h2>{title}</h2>
-                                    <Image
-                                        src={sourceUrl}
-                                        width={300}
-                                        height={250}
-                                        objectFit={'cover'}
-                                        objectPosition={'top center'}
-                                        alt={title}
-                                    />
-                                    <div>
-                                        <p>{projectDescription}</p>
-                                        <a
-                                            href={linkToLiveSite}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            Link to LiveSite
-                                        </a>
-                                        <a
-                                            href={repoLink}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            Repo Link
-                                        </a>
-                                    </div>
-                                </article>
-                            );
-                        }
-                    )}
-                </section>
+                <HomeProjects homeProjects={projectsData} />
             </div>
         </Layout>
     );
