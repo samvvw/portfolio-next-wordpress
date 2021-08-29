@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export function HomeProjects({
     homeProjects,
 }: WPAPI.HomeProjectsProps): JSX.Element {
-    console.log(homeProjects);
     return (
         <section className={style.projectsSectionWrapper}>
             <h2>My Projects</h2>
