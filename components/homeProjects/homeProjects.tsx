@@ -1,72 +1,96 @@
+import style from './homeProjects.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export function HomeProjects({
     homeProjects,
 }: WPAPI.HomeProjectsProps): JSX.Element {
+    console.log(homeProjects);
     return (
-        <section>
-            <ul>
-                {homeProjects.map(
-                    ({
-                        node: {
-                            title,
-                            slug,
-                            featuredImage: {
-                                node: { sourceUrl },
-                            },
-                            projectFields: {
-                                projectDescription,
-                                linkToLiveSite,
-                                repoLink,
-                            },
-                        },
-                    }) => (
-                        <li key={slug} id={slug}>
-                            <h2>{title}</h2>
+        <section className={style.projectsSectionWrapper}>
+            <h2>My Projects</h2>
 
-                            <div
-                                style={{
-                                    position: 'relative',
-                                    height: '22vh',
-                                    width: '400px',
-                                }}
-                            >
-                                <Image
-                                    src={sourceUrl}
-                                    layout="fill"
-                                    objectFit={'cover'}
-                                    objectPosition={'top left'}
-                                    alt={title}
-                                />
+            {homeProjects.map(
+                ({
+                    node: {
+                        title,
+                        slug,
+                        featuredImage: {
+                            node: { sourceUrl },
+                        },
+                        projectFields: {
+                            projectDescription,
+                            linkToLiveSite,
+                            repoLink,
+                        },
+                        tags,
+                    },
+                }) => (
+                    <article
+                        key={slug}
+                        id={slug}
+                        className={style.portfolioProject}
+                    >
+                        <div className={style.projectDescription}>
+                            <div className="style.projectName">
+                                <h3>
+                                    <Link href={`/projects/${slug}`}>
+                                        <a>{title}</a>
+                                    </Link>
+                                </h3>
                             </div>
-                            <div className="description-wrapper">
-                                <p>{projectDescription}</p>
-                            </div>
-                            <div className="links-wrapper">
-                                <a
-                                    href={linkToLiveSite}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    linkTo LiveSite
-                                </a>
+                            <p>{projectDescription}</p>
+                            <div className={style.projectLinks}>
                                 <a
                                     href={repoLink}
                                     target="_blank"
                                     rel="noreferrer"
                                 >
-                                    repo Link
+                                    <span className="visually-hidden">
+                                        Link to repo
+                                    </span>
+                                    <FontAwesomeIcon icon={['fab', 'github']} />
+                                </a>
+                                <a
+                                    href={linkToLiveSite}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <span className="visually-hidden">
+                                        Link to live site
+                                    </span>
+                                    <FontAwesomeIcon
+                                        icon={['fas', 'window-maximize']}
+                                    />
                                 </a>
                             </div>
+                        </div>
+                        <div className={style.entryThumbnail}>
+                            <Image
+                                src={sourceUrl}
+                                // layout="fill"
+                                height={300}
+                                width={380}
+                                objectFit={'cover'}
+                                objectPosition={'top left'}
+                                alt={title}
+                            />
+                        </div>
+                        <div className={style.projectTags}>
+                            {tags.edges.map(({ node: { name, slug } }) => {
+                                return (
+                                    <Link key={slug} href={`/skill/${slug}`}>
+                                        <a>{name}</a>
+                                    </Link>
+                                );
+                            })}
+                        </div>
 
-                            <Link href={`/projects/${slug}`}>
-                                <a>{slug}</a>
-                            </Link>
-                        </li>
-                    )
-                )}
-            </ul>
+                        <hr />
+                    </article>
+                )
+            )}
         </section>
     );
 }

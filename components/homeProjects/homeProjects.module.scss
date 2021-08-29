@@ -1,1 +1,174 @@
 @import '../../sass/main.scss';
+
+// .archive .archive-title {
+//   font-size: 0;
+//   span {
+//     font-size: 2rem;
+//   }
+// }
+
+// .tag-title {
+//   padding-left: 1rem;
+// }
+
+.projectsSectionWrapper {
+    h2 {
+        font-size: 1.7rem;
+        margin-left: 1rem;
+        margin-bottom: 2rem;
+    }
+    .portfolioProject {
+        .projectDescription {
+            position: relative;
+            padding: 1.5rem 1rem;
+            h3 {
+                margin-top: 0;
+                margin-bottom: 1rem;
+                a {
+                    font-size: 1.6rem;
+                    color: $color_header_light_text;
+                }
+                a:hover {
+                    color: $color_body_accent;
+                }
+            }
+            p {
+                padding-top: 1.5rem;
+                margin: auto;
+                font-size: 1rem;
+            }
+            .projectLinks {
+                display: flex;
+                justify-content: flex-end;
+                gap: 1.5rem;
+                width: 100%;
+                top: 1rem;
+                right: 1rem;
+                a {
+                    font-size: 1.4rem;
+                    color: $color_body_text;
+                    @include neonShadowSVG;
+                }
+                a:hover {
+                    color: $color_body_accent;
+                    @include neonShadowSVG;
+                }
+            }
+        }
+        .projectTags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+            width: 80%;
+            margin: 2rem auto;
+            gap: 1rem;
+            a {
+                background-color: $color_tag_bg;
+                text-decoration: none;
+                color: $color_tag;
+                border-radius: 3px;
+                padding: 0 0.5rem;
+            }
+        }
+    }
+    .entryThumbnail {
+        position: relative;
+        text-align: center;
+        height: 350px;
+    }
+    .entryThumbnail img {
+        max-width: 100%;
+    }
+    hr {
+        grid-column: 1 / span 2;
+
+        width: 80%;
+        height: 1px;
+        color: $over_line_color;
+        background-color: $over_line_color;
+        margin: 2rem auto 2rem auto;
+
+        @include neonShadowBox;
+    }
+
+    @media screen and (min-width: $bp_tablet) {
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        margin: 8rem 3rem;
+        .portfolioProject {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr;
+            grid-template-rows: auto auto;
+            gap: 8px;
+            margin-bottom: 6rem;
+            .projectDescription {
+                position: relative;
+                padding: 1.5rem 1rem;
+                h3 {
+                    margin-bottom: 1rem;
+                    font-size: 1.6rem;
+                }
+                p {
+                    padding-top: 2rem;
+                    width: 90%;
+                    margin: auto;
+                    font-size: 1.2rem;
+                }
+                .projectLinks {
+                    position: absolute;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-around;
+                    gap: 1rem;
+                    width: 4.5rem;
+                    top: 1rem;
+                    right: 1rem;
+                    a {
+                        font-size: 1.7rem;
+                        color: $color_body_text;
+                        @include neonShadowSVG;
+                    }
+                    a:hover {
+                        color: $color_body_accent;
+                        @include neonShadowSVG;
+                    }
+                }
+            }
+            .projectTags {
+                grid-column: 1 / span 2;
+                text-align: center;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 80%;
+                margin: 2rem auto;
+                a {
+                    background-color: $color_tag_bg;
+                    text-decoration: none;
+                    color: $color_tag;
+                    border-radius: 3px;
+                    padding: 0 0.5rem;
+                }
+            }
+
+            .entryThumbnail {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .entryThumbnail img {
+                margin: auto;
+                max-width: 90%;
+                border-radius: 5px;
+            }
+        }
+    }
+    @media screen and (min-width: $bp_desktop) {
+    }
+    @media screen and (min-width: $bp_desktop_large) {
+    }
+}

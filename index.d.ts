@@ -124,13 +124,16 @@ declare namespace WPAPI {
     interface SingleProject {
         node: {
             slug: string;
-            tags?: [
-                {
-                    node: {
-                        name: string;
-                    };
-                }
-            ];
+            tags?: {
+                edges: [
+                    {
+                        node: {
+                            name: string;
+                            slug: string;
+                        };
+                    }
+                ];
+            };
             title: string;
             featuredImage: {
                 node: { sourceUrl: string };

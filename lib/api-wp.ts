@@ -335,6 +335,14 @@ export async function getAllHomeProjects(): Promise<WPAPI.SingleProject[]> {
                                 sourceUrl
                             }
                         }
+                        tags {
+                            edges {
+                                node {
+                                    name
+                                    slug
+                                }
+                            }
+                        }
                     }
                 }
             }
