@@ -50,7 +50,6 @@ export function Header({
             setThemeColors(theme);
             sessionStorage.setItem('theme-mode', theme);
         }
-        console.log(theme);
     }, [theme]);
 
     function handleDrawer() {

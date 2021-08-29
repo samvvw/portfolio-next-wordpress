@@ -25,8 +25,6 @@ export default function Home({
             isHome
             generalSettings={generalSettings}
         >
-            <h1>Portfolio Website</h1>
-
             <AuthorBio {...authorBio} />
             <Skills allSkills={skillsMenu.node.menuItems.edges} />
             <HomeProjects homeProjects={homeProjects} />
