@@ -33,7 +33,7 @@ export function HomeProjects({
                         className={style.portfolioProject}
                     >
                         <div className={style.projectDescription}>
-                            <div className="style.projectName">
+                            <div className={style.projectName}>
                                 <h3>
                                     <Link href={`/projects/${slug}`}>
                                         <a>{title}</a>

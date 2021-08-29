@@ -7,7 +7,7 @@ import {
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Layout } from '../../components';
+import { Layout, HomeProjects } from '../../components';
 
 export default function Category({
     generalSettings,
@@ -37,39 +37,7 @@ export default function Category({
                 })(categoryName)}
             </div>
             <div>
-                {categoryData.map(
-                    ({
-                        node: {
-                            slug,
-                            title,
-                            projectFields: {
-                                linkToLiveSite,
-                                projectDescription,
-                                repoLink,
-                            },
-                            featuredImage: {
-                                node: { sourceUrl },
-                            },
-                        },
-                    }) => {
-                        return (
-                            <div key={slug}>
-                                <h2>{title}</h2>
-                                <Image
-                                    src={sourceUrl}
-                                    width={380}
-                                    height={250}
-                                    objectFit={'contain'}
-                                    objectPosition={'top center'}
-                                    alt={title}
-                                />
-                                <p>{projectDescription}</p>
-                                <a href={repoLink}> repo link</a>
-                                <a href={linkToLiveSite}>link to live site</a>
-                            </div>
-                        );
-                    }
-                )}
+                <HomeProjects homeProjects={categoryData} />
             </div>
             <Link href="/">
                 <a>Back to home...</a>

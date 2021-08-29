@@ -8,6 +8,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { Layout } from '../../components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import style from '../../components/homeProjects/homeProjects.module.scss';
 
 export default function Project({
     generalSettings,
@@ -18,7 +20,7 @@ export default function Project({
                 node: { sourceUrl },
             },
             projectFields: { linkToLiveSite, projectDescription, repoLink },
-            tags: { edges },
+            tags,
         },
     },
     mainMenu,
@@ -36,40 +38,58 @@ export default function Project({
             socialMenu={socialMenu}
             title={`${title} | Portfolio Sam Villegas`}
         >
-            <div>
-                <h1>{title}</h1>
-                <Image
-                    src={sourceUrl}
-                    width={400}
-                    height={300}
-                    objectFit={'cover'}
-                    alt={title}
-                />
-
-                <a href={linkToLiveSite} target={'_blank'} rel="noreferrer">
-                    linkToLiveSite
-                </a>
-
-                <a href={repoLink} target={'_blank'} rel="noreferrer">
-                    repoLink
-                </a>
-
-                <p>{projectDescription}</p>
-                <ul>
-                    {edges.map(({ node: { tagId, name, slug } }) => {
-                        return (
-                            <li key={tagId}>
-                                <Link href={`/skill/${slug}`}>
+            <section className={style.projectsSectionWrapper}>
+                <article className={style.portfolioProject}>
+                    <div className={style.projectDescription}>
+                        <div className={style.projectName}>
+                            <h3>{title}</h3>
+                        </div>
+                        <p>{projectDescription}</p>
+                        <div className={style.projectLinks}>
+                            <a href={repoLink} target="_blank" rel="noreferrer">
+                                <span className="visually-hidden">
+                                    Link to repo
+                                </span>
+                                <FontAwesomeIcon icon={['fab', 'github']} />
+                            </a>
+                            <a
+                                href={linkToLiveSite}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <span className="visually-hidden">
+                                    Link to live site
+                                </span>
+                                <FontAwesomeIcon
+                                    icon={['fas', 'window-maximize']}
+                                />
+                            </a>
+                        </div>
+                    </div>
+                    <div className={style.entryThumbnail}>
+                        <Image
+                            src={sourceUrl}
+                            // layout="fill"
+                            height={300}
+                            width={380}
+                            objectFit={'cover'}
+                            objectPosition={'top left'}
+                            alt={title}
+                        />
+                    </div>
+                    <div className={style.projectTags}>
+                        {tags.edges.map(({ node: { name, slug } }) => {
+                            return (
+                                <Link key={slug} href={`/skill/${slug}`}>
                                     <a>{name}</a>
                                 </Link>
-                            </li>
-                        );
-                    })}
-                </ul>
-                <Link href="/">
-                    <a>Back to home...</a>
-                </Link>
-            </div>
+                            );
+                        })}
+                    </div>
+
+                    <hr />
+                </article>
+            </section>
         </Layout>
     );
 }
