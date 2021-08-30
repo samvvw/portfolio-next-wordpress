@@ -3,3 +3,4 @@ export * from './header/header';
 export * from './homeProjects/homeProjects';
 export * from './skills/skills';
 export * from './layout/layout';
+export * from './contactForm/contactForm';

@@ -33,9 +33,7 @@ export default function Skill({
                         );
                     })(skillName)}
                 </h1>
-                <Link href="/">
-                    <a>Back to home...</a>
-                </Link>
+
                 <HomeProjects homeProjects={projectsData} />
             </div>
         </Layout>
