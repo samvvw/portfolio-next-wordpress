@@ -72,12 +72,12 @@
         align-items: center;
         cursor: pointer;
         color: $color_body_text;
-        @include neonShadowText;
+        @include neonShadowSVG;
         font-size: 1.6rem;
         margin-right: 1rem;
     }
     .hamburgerMenu:hover {
-        @include neonShadowText;
+        @include neonShadowSVG;
         color: $color_body_accent;
     }
 
@@ -103,6 +103,7 @@
             35.1% 87.75%,
             11.47% 72.27%
         );
+
         svg {
             font-size: 1.8rem;
             color: $color_body_text;
@@ -112,6 +113,11 @@
         svg:hover {
             color: $color_body_accent;
             @include neonShadowSVG;
+        }
+        .closeWrapper {
+            position: absolute;
+            top: 10%;
+            right: 10%;
         }
         .menuMainContainer {
             height: 40%;

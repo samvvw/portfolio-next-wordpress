@@ -79,11 +79,13 @@ export function Header({
                         drawerState ? drawerState : ''
                     }`}
                 >
-                    <FontAwesomeIcon
-                        icon={['fas', 'times']}
-                        onClick={handleDrawer}
-                        className={style.closeButton}
-                    />
+                    <div className={style.closeWrapper}>
+                        <FontAwesomeIcon
+                            icon={['fas', 'times']}
+                            onClick={handleDrawer}
+                            className={style.closeButton}
+                        />
+                    </div>
                     <nav className={style.menuMainContainer}>
                         <ul className="main-menu">
                             {mainMenu.node.menuItems.edges.map(

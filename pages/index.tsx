@@ -20,7 +20,7 @@ export default function Home({
         <Layout
             mainMenu={mainMenu}
             socialMenu={socialMenu}
-            title={'Portfolio Sam Villegas'}
+            title={'Home | Portfolio Sam Villegas'}
             isHome
             generalSettings={generalSettings}
         >
