@@ -1,0 +1,68 @@
+@import '../../sass/main.scss';
+
+.formWrapper {
+    h2 {
+        text-align: center;
+        font-size: 1.9rem;
+        margin-bottom: 2rem;
+    }
+    label {
+        color: $color_body_text;
+        @include neonShadowText;
+        font-weight: normal;
+    }
+    label,
+    input {
+        font-size: 1.3rem;
+    }
+    input,
+    textarea {
+        width: 100% !important;
+        background-color: transparent;
+        color: $color_body_text;
+        font-size: 1.1rem;
+    }
+    input {
+        border-style: none;
+        border-bottom: 1px solid $color_body_text;
+        // @include neonShadowBox;
+    }
+    button {
+        background-color: transparent;
+        @include neonShadowText;
+        @include neonShadowBox;
+        font-family: $font_header;
+        color: $color_header_text;
+        font-weight: normal;
+        font-size: 1.4rem;
+        border: 1px $color_body_text solid;
+        border-radius: 4px t;
+    }
+    button:hover {
+        background-color: $color_header_text;
+        @include neonShadowText;
+        @include neonShadowBox;
+        font-family: $font_header;
+        color: $color_body_bg;
+        border-radius: 4px t;
+    }
+    @media screen and (min-width: $bp_tablet) {
+        .entry-content form {
+            width: 80%;
+            margin: 0 auto;
+            input {
+                max-width: 100%;
+            }
+        }
+    }
+    @media screen and (min-width: $bp_desktop) {
+        .entry-content form {
+            width: 50%;
+        }
+    }
+    @media screen and (min-width: $bp_desktop_large) {
+        .entry-content form {
+            width: 40%;
+        }
+    }
+}
