@@ -51,18 +51,18 @@ export function ContactForm(): JSX.Element {
         script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA}`;
         script.id = `reCaptcha`;
         document.body.appendChild(script);
-        const time = setTimeout(() => {
-            document.getElementsByClassName(
-                'grecaptcha-badge'
-            )[0].parentElement.style.transition = 'opacity .5s ease-out';
-            document.getElementsByClassName(
-                'grecaptcha-badge'
-            )[0].parentElement.style.opacity = '0';
-        }, 2500);
+        // const time = setTimeout(() => {
+        //     document.getElementsByClassName(
+        //         'grecaptcha-badge'
+        //     )[0].parentElement.style.transition = 'opacity .5s ease-out';
+        //     document.getElementsByClassName(
+        //         'grecaptcha-badge'
+        //     )[0].parentElement.style.opacity = '0';
+        // }, 2500);
 
-        return () => {
-            clearTimeout(time);
-        };
+        // return () => {
+        //     clearTimeout(time);
+        // };
     }, []);
     function fetchHandler() {
         fetch('/api/contact', {
