@@ -6,7 +6,6 @@ import {
 } from '../../lib/api-wp';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Layout, HomeProjects } from '../../components';
 
 export default function Category({
