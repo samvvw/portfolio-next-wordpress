@@ -58,7 +58,7 @@ export function ContactForm(): JSX.Element {
             document.getElementsByClassName(
                 'grecaptcha-badge'
             )[0].parentElement.style.opacity = '0';
-        }, 1500);
+        }, 2500);
 
         return () => {
             clearTimeout(time);
