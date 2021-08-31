@@ -50,6 +50,7 @@ export function ContactForm(): JSX.Element {
         const script = document.createElement('script');
         script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA}`;
         script.id = `reCaptcha`;
+        script.defer = true;
         document.body.appendChild(script);
         const time = setTimeout(() => {
             document.getElementsByClassName(
