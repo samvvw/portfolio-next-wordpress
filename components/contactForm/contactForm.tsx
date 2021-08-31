@@ -121,6 +121,7 @@ export function ContactForm(): JSX.Element {
                     <div className="label-wrapper">
                         <label htmlFor="name">Name: </label>
                         <input
+                            id="name"
                             type="text"
                             name="name"
                             onChange={(e) => setName(e.target.value)}
@@ -131,6 +132,7 @@ export function ContactForm(): JSX.Element {
                     <div className="label-wrapper">
                         <label htmlFor="email">Email: </label>
                         <input
+                            id="email"
                             type="text"
                             name="email"
                             onChange={(e) => setEmail(e.target.value)}
@@ -141,6 +143,7 @@ export function ContactForm(): JSX.Element {
                     <div className="label-wrapper">
                         <label htmlFor="message">Message: </label>
                         <textarea
+                            id="message"
                             name="message"
                             cols={30}
                             rows={10}
