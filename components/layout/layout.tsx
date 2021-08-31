@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
 import { Header } from '..';
 
@@ -16,6 +17,9 @@ export function Layout({
     title: string;
     isHome?: boolean;
 }): JSX.Element {
+    useEffect(() => {
+        document.documentElement.lang = 'en';
+    }, []);
     return (
         <div>
             <Head>
