@@ -30,6 +30,11 @@ export function Layout({
                 />
                 <meta name="color-scheme" content="dark light" />
                 <link rel="icon" href="/favicon.ico" />
+                <link
+                    rel="preconnect"
+                    href="https://fonts.gstatic.com"
+                    crossOrigin="anonymous"
+                />
             </Head>
             <Header
                 mainMenu={mainMenu}
