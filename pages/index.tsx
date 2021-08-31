@@ -17,26 +17,6 @@ export default function Home({
     socialMenu,
     skillsMenu,
 }: WPAPI.HomeProps): JSX.Element {
-    const [apiState, setApiState] = useState<string | null>(null);
-    function fetchHandler() {
-        fetch('/api/contact', {
-            headers: { 'Content-Type': 'application/json' },
-            method: 'POST',
-            body: JSON.stringify({
-                name: 'John',
-                lastName: 'Doe',
-            }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                setApiState(JSON.stringify(data));
-                console.log(data);
-            })
-            .catch((err) => console.log(err));
-    }
-    // useEffect(() => {
-    //     fetchHandler();
-    // }, []);
     return (
         <Layout
             mainMenu={mainMenu}
@@ -46,8 +26,7 @@ export default function Home({
             generalSettings={generalSettings}
         >
             <AuthorBio {...authorBio} />
-            <button onClick={fetchHandler}>fetch</button>
-            <div>{apiState}</div>
+
             <Skills allSkills={skillsMenu.node.menuItems.edges} />
             <HomeProjects homeProjects={homeProjects} />
         </Layout>
