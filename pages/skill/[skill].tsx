@@ -4,8 +4,6 @@ import {
     getProjectsBySkill,
     getAllMenus,
 } from '../../lib/api-wp';
-import Image from 'next/image';
-import Link from 'next/link';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { HomeProjects, Layout } from '../../components';
 
