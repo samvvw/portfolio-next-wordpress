@@ -7,6 +7,7 @@ import {
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import { Layout, HomeProjects } from '../../components';
+import { ParsedUrlQuery } from 'querystring';
 
 export default function Category({
     generalSettings,
@@ -54,11 +55,12 @@ export const getStaticPaths: GetStaticPaths = async function () {
     };
 };
 
-export const getStaticProps: GetStaticProps = async function ({
-    params,
-}: WPAPI.Params): Promise<{
-    props: WPAPI.CategoryProps;
-}> {
+interface Params extends ParsedUrlQuery {
+    [param: string]: string;
+}
+
+export const getStaticProps: GetStaticProps = async function (context) {
+    const params = context.params as Params;
     const generalSettings = await getGeneralSettings();
     const categoryData = await getProjectsByCategory(params.category);
     const { mainMenu, socialMenu } = await getAllMenus();

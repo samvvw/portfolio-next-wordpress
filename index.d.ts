@@ -42,7 +42,7 @@ declare namespace WPAPI {
                             order: number;
                             label: string;
                             path: string;
-                            target: null | string;
+                            target: string | undefined;
                         };
                     }
                 ];

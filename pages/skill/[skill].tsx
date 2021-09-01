@@ -6,6 +6,7 @@ import {
 } from '../../lib/api-wp';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { HomeProjects, Layout } from '../../components';
+import { ParsedUrlQuery } from 'querystring';
 
 export default function Skill({
     generalSettings,
@@ -47,11 +48,12 @@ export const getStaticPaths: GetStaticPaths = async function () {
     };
 };
 
-export const getStaticProps: GetStaticProps = async function ({
-    params,
-}: WPAPI.Params): Promise<{
-    props: WPAPI.SkillProps;
-}> {
+interface Params extends ParsedUrlQuery {
+    [param: string]: string;
+}
+
+export const getStaticProps: GetStaticProps = async function (context) {
+    const params = context.params as Params;
     const generalSettings = await getGeneralSettings();
     const projectsData = await getProjectsBySkill(params.skill);
     const { mainMenu, socialMenu } = await getAllMenus();

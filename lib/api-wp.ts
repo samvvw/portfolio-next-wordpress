@@ -26,7 +26,7 @@ async function apiRequest<T>(
     });
 
     const json: {
-        data?: T;
+        data: T;
         errors?: [];
     } = await response.json();
     if (json.errors) {
@@ -80,9 +80,9 @@ export async function getAllMenus(): Promise<{
         }
     `);
 
-    let mainMenu: WPAPI.MenuProps;
-    let socialMenu: WPAPI.MenuProps;
-    let skillsMenu: WPAPI.MenuProps;
+    let mainMenu: WPAPI.MenuProps = {} as WPAPI.MenuProps;
+    let socialMenu: WPAPI.MenuProps = {} as WPAPI.MenuProps;
+    let skillsMenu: WPAPI.MenuProps = {} as WPAPI.MenuProps;
 
     data?.menus.edges.forEach((menu: WPAPI.MenuProps) => {
         switch (menu.node.slug) {
