@@ -6,11 +6,10 @@ import {
 } from '../../lib/api-wp';
 import Image from 'next/image';
 import Link from 'next/link';
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
 import { Layout } from '../../components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import style from '../../components/homeProjects/homeProjects.module.scss';
-import { ParsedUrlQuery } from 'querystring';
 
 export default function Project({
     generalSettings,
@@ -26,12 +25,7 @@ export default function Project({
     },
     mainMenu,
     socialMenu,
-}: {
-    generalSettings: WPAPI.GeneralSettingsProps;
-    projectData: WPAPI.ProjectData;
-    mainMenu: WPAPI.MenuProps;
-    socialMenu: WPAPI.MenuProps;
-}): JSX.Element {
+}: WPAPI.ProjectProps): JSX.Element {
     return (
         <Layout
             generalSettings={generalSettings}
@@ -104,22 +98,19 @@ export const getStaticPaths: GetStaticPaths = async function getStaticPaths() {
     };
 };
 
-interface Params extends ParsedUrlQuery {
-    [param: string]: string;
-}
+export const getStaticProps: GetStaticProps<WPAPI.ProjectProps, WPAPI.Params> =
+    async function (context: GetStaticPropsContext<WPAPI.Params>) {
+        const params = context.params as WPAPI.Params;
+        const generalSettings = await getGeneralSettings();
+        const projectData = await getProjectData(params.project);
+        const { mainMenu, socialMenu } = await getAllMenus();
 
-export const getStaticProps: GetStaticProps = async function (context) {
-    const params = context.params as Params;
-    const generalSettings = await getGeneralSettings();
-    const projectData = await getProjectData(params.project);
-    const { mainMenu, socialMenu } = await getAllMenus();
-
-    return {
-        props: {
-            generalSettings,
-            projectData,
-            mainMenu,
-            socialMenu,
-        },
+        return {
+            props: {
+                generalSettings,
+                projectData,
+                mainMenu,
+                socialMenu,
+            },
+        };
     };
-};

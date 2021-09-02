@@ -146,7 +146,7 @@ export async function getAllSkills(): Promise<WPAPI.SkillsProps[]> {
     return data?.tags.edges;
 }
 
-export async function getAllSkillsSlugs(): Promise<WPAPI.Params[]> {
+export async function getAllSkillsSlugs(): Promise<WPAPI.ParamsPaths[]> {
     const data: {
         tags: {
             edges: [
@@ -229,7 +229,7 @@ export async function getProjectsBySkill(
     return data?.portfolioProjects.edges;
 }
 
-export async function getCategories(): Promise<WPAPI.Params[]> {
+export async function getCategories(): Promise<WPAPI.ParamsPaths[]> {
     const data: {
         categories: {
             edges: [
@@ -398,7 +398,7 @@ export async function getAllProjects(): Promise<WPAPI.SingleProject[]> {
     return data?.portfolioProjects.edges;
 }
 
-export async function getAllProjectsSlugs(): Promise<WPAPI.Params[]> {
+export async function getAllProjectsSlugs(): Promise<WPAPI.ParamsPaths[]> {
     const data: {
         portfolioProjects: { edges: WPAPI.ParamsSlug[] };
     } = await apiRequest(/* GraphQL */ `
