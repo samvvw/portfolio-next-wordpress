@@ -4,7 +4,7 @@ import {
     getProjectsBySkill,
     getAllMenus,
 } from '../../lib/api-wp';
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
 import { HomeProjects, Layout } from '../../components';
 
 export default function Skill({
@@ -47,22 +47,20 @@ export const getStaticPaths: GetStaticPaths = async function () {
     };
 };
 
-export const getStaticProps: GetStaticProps = async function ({
-    params,
-}: WPAPI.Params): Promise<{
-    props: WPAPI.SkillProps;
-}> {
-    const generalSettings = await getGeneralSettings();
-    const projectsData = await getProjectsBySkill(params.skill);
-    const { mainMenu, socialMenu } = await getAllMenus();
+export const getStaticProps: GetStaticProps<WPAPI.SkillProps, WPAPI.Params> =
+    async function (context: GetStaticPropsContext<WPAPI.Params>) {
+        const params = context.params as WPAPI.Params;
+        const generalSettings = await getGeneralSettings();
+        const projectsData = await getProjectsBySkill(params.skill);
+        const { mainMenu, socialMenu } = await getAllMenus();
 
-    return {
-        props: {
-            generalSettings,
-            projectsData,
-            skillName: params.skill,
-            mainMenu,
-            socialMenu,
-        },
+        return {
+            props: {
+                generalSettings,
+                projectsData,
+                skillName: params.skill,
+                mainMenu,
+                socialMenu,
+            },
+        };
     };
-};

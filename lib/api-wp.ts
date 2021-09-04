@@ -26,7 +26,7 @@ async function apiRequest<T>(
     });
 
     const json: {
-        data?: T;
+        data: T;
         errors?: [];
     } = await response.json();
     if (json.errors) {
@@ -80,9 +80,9 @@ export async function getAllMenus(): Promise<{
         }
     `);
 
-    let mainMenu: WPAPI.MenuProps;
-    let socialMenu: WPAPI.MenuProps;
-    let skillsMenu: WPAPI.MenuProps;
+    let mainMenu: WPAPI.MenuProps = {} as WPAPI.MenuProps;
+    let socialMenu: WPAPI.MenuProps = {} as WPAPI.MenuProps;
+    let skillsMenu: WPAPI.MenuProps = {} as WPAPI.MenuProps;
 
     data?.menus.edges.forEach((menu: WPAPI.MenuProps) => {
         switch (menu.node.slug) {
@@ -146,7 +146,7 @@ export async function getAllSkills(): Promise<WPAPI.SkillsProps[]> {
     return data?.tags.edges;
 }
 
-export async function getAllSkillsSlugs(): Promise<WPAPI.Params[]> {
+export async function getAllSkillsSlugs(): Promise<WPAPI.ParamsPaths[]> {
     const data: {
         tags: {
             edges: [
@@ -229,7 +229,7 @@ export async function getProjectsBySkill(
     return data?.portfolioProjects.edges;
 }
 
-export async function getCategories(): Promise<WPAPI.Params[]> {
+export async function getCategories(): Promise<WPAPI.ParamsPaths[]> {
     const data: {
         categories: {
             edges: [
@@ -398,7 +398,7 @@ export async function getAllProjects(): Promise<WPAPI.SingleProject[]> {
     return data?.portfolioProjects.edges;
 }
 
-export async function getAllProjectsSlugs(): Promise<WPAPI.Params[]> {
+export async function getAllProjectsSlugs(): Promise<WPAPI.ParamsPaths[]> {
     const data: {
         portfolioProjects: { edges: WPAPI.ParamsSlug[] };
     } = await apiRequest(/* GraphQL */ `

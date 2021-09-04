@@ -42,7 +42,7 @@ declare namespace WPAPI {
                             order: number;
                             label: string;
                             path: string;
-                            target: null | string;
+                            target: string | undefined;
                         };
                     }
                 ];
@@ -86,10 +86,13 @@ declare namespace WPAPI {
         socialMenu: MenuProps;
     }
 
-    interface Params {
+    interface ParamsPaths {
         params: {
             [param: string]: string;
         };
+    }
+    interface Params {
+        [param: string]: string;
     }
 
     interface ProjectData {
@@ -145,6 +148,13 @@ declare namespace WPAPI {
                 repoLink: string;
             };
         };
+    }
+
+    interface ProjectProps {
+        generalSettings: WPAPI.GeneralSettingsProps;
+        projectData: WPAPI.ProjectData;
+        mainMenu: WPAPI.MenuProps;
+        socialMenu: WPAPI.MenuProps;
     }
 
     interface SkillProps {

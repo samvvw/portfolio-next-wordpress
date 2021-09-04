@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, FormEvent } from 'react';
 import style from './contactForm.module.scss';
 
 declare global {
@@ -28,11 +28,11 @@ interface ReCaptchaRenderOptions {
 
 export function ContactForm(): JSX.Element {
     const [name, setName] = useState<string>('');
-    const nameRef = useRef(null);
+    const nameRef = useRef<HTMLInputElement>(null);
     const [email, setEmail] = useState<string>('');
-    const emailRef = useRef(null);
+    const emailRef = useRef<HTMLInputElement>(null);
     const [message, setMessage] = useState<string>('');
-    const messageRef = useRef(null);
+    const messageRef = useRef<HTMLTextAreaElement>(null);
 
     // const handleLoaded = (_) => {
     //     window.grecaptcha.ready((_) => {
@@ -53,12 +53,15 @@ export function ContactForm(): JSX.Element {
         script.defer = true;
         document.body.appendChild(script);
         const time = setTimeout(() => {
-            document.getElementsByClassName(
-                'grecaptcha-badge'
-            )[0].parentElement.style.transition = 'opacity .5s ease-out';
-            document.getElementsByClassName(
-                'grecaptcha-badge'
-            )[0].parentElement.style.opacity = '0';
+            const badge =
+                document.getElementsByClassName('grecaptcha-badge')[0]
+                    .parentElement;
+
+            if (badge !== null) {
+                badge.style.transition = 'opacity .5s ease-out';
+
+                badge.style.opacity = '0';
+            }
         }, 2500);
 
         return () => {
@@ -82,14 +85,14 @@ export function ContactForm(): JSX.Element {
             .catch((err) => console.log(err));
     }
 
-    function handleSubmit(e) {
+    function handleSubmit(e: FormEvent) {
         e.preventDefault();
         console.log(name);
         console.log(email);
         console.log(message);
         window.grecaptcha.ready(function () {
             window.grecaptcha
-                .execute(process.env.NEXT_PUBLIC_RECAPTCHA, {
+                .execute(process.env.NEXT_PUBLIC_RECAPTCHA as string, {
                     action: 'submit',
                 })
                 .then(function () {
@@ -98,10 +101,12 @@ export function ContactForm(): JSX.Element {
                 });
         });
 
-        nameRef.current.value = '';
-        emailRef.current.value = '';
-        messageRef.current.value = '';
-        nameRef.current.focus();
+        if (nameRef.current && emailRef.current && messageRef.current) {
+            nameRef.current.value = '';
+            emailRef.current.value = '';
+            messageRef.current.value = '';
+            nameRef.current.focus();
+        }
         setName('');
         setEmail('');
         setMessage('');

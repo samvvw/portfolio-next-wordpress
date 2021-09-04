@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { GetStaticProps } from 'next';
 import { AuthorBio, HomeProjects, Skills, Layout } from '../components/';
 import {

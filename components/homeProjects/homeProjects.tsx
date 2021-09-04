@@ -77,7 +77,7 @@ export function HomeProjects({
                             />
                         </div>
                         <div className={style.projectTags}>
-                            {tags.edges.map(({ node: { name, slug } }) => {
+                            {tags?.edges.map(({ node: { name, slug } }) => {
                                 return (
                                     <Link key={slug} href={`/skill/${slug}`}>
                                         <a>{name}</a>

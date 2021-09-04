@@ -4,7 +4,7 @@ import {
     getProjectsByCategory,
     getAllMenus,
 } from '../../lib/api-wp';
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
 import Link from 'next/link';
 import { Layout, HomeProjects } from '../../components';
 
@@ -54,22 +54,20 @@ export const getStaticPaths: GetStaticPaths = async function () {
     };
 };
 
-export const getStaticProps: GetStaticProps = async function ({
-    params,
-}: WPAPI.Params): Promise<{
-    props: WPAPI.CategoryProps;
-}> {
-    const generalSettings = await getGeneralSettings();
-    const categoryData = await getProjectsByCategory(params.category);
-    const { mainMenu, socialMenu } = await getAllMenus();
+export const getStaticProps: GetStaticProps<WPAPI.CategoryProps, WPAPI.Params> =
+    async function (context: GetStaticPropsContext<WPAPI.Params>) {
+        const params = context.params as WPAPI.Params;
+        const generalSettings = await getGeneralSettings();
+        const categoryData = await getProjectsByCategory(params.category);
+        const { mainMenu, socialMenu } = await getAllMenus();
 
-    return {
-        props: {
-            generalSettings,
-            categoryData,
-            categoryName: params.category,
-            mainMenu,
-            socialMenu,
-        },
+        return {
+            props: {
+                generalSettings,
+                categoryData,
+                categoryName: params.category,
+                mainMenu,
+                socialMenu,
+            },
+        };
     };
-};

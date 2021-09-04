@@ -4,7 +4,7 @@ import admin from 'firebase-admin';
 try {
     admin.initializeApp({
         credential: admin.credential.cert(
-            JSON.parse(process.env.FIREBASE_API_KEY)
+            JSON.parse(process.env.FIREBASE_API_KEY as string)
         ),
     });
 } catch (err) {
