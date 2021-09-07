@@ -68,7 +68,7 @@ export function ContactForm(): JSX.Element {
             clearTimeout(time);
         };
     }, []);
-    function fetchHandler() {
+    function fetchHandler(token: string) {
         fetch('/api/contact', {
             headers: { 'Content-Type': 'application/json' },
             method: 'POST',
@@ -76,6 +76,7 @@ export function ContactForm(): JSX.Element {
                 name: name,
                 email: email,
                 message: message,
+                token: token,
             }),
         })
             .then((response) => response.json())
@@ -95,9 +96,9 @@ export function ContactForm(): JSX.Element {
                 .execute(process.env.NEXT_PUBLIC_RECAPTCHA as string, {
                     action: 'submit',
                 })
-                .then(function () {
+                .then(function (token) {
                     // Add your logic to submit to your backend server here.
-                    fetchHandler();
+                    fetchHandler(token);
                 });
         });
 

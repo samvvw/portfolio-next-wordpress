@@ -16,6 +16,4 @@ try {
 }
 // }
 
-console.log(admin.apps.length, '<--');
-
 export const db = admin.firestore();
